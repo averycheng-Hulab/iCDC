@@ -29,5 +29,5 @@ bulk/
 │   ├── bulk_1-2/       # DEG Excel files for bulk_1-2
 │   └── bulk_3/         # DEG CSV files for bulk_3
 └── output/
-    ├── bulk_1-2/       # DEG lists + GO/KEGG + plots (bulk_1-2)
-    └── bulk_3/         # DEG lists + GO/KEGG + plots + trend sets (bulk_3)
+    ├── bulk_1-2/       # DEG lists + GO/KEGG tables (bulk_1-2)
+    └── bulk_3/         # DEG lists + GO/KEGG tables (bulk_3)
