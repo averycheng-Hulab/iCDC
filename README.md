@@ -12,7 +12,7 @@ main/
 ├── LICENSE                           # Open-source license
 │
 ├── scRNA/                            # Single-cell RNA-seq workflows
-│   ├── README_scRNA.md               # scRNA documentation
+│   ├── README.md                     # scRNA documentation
 │   │
 │   ├── utils/
 │   │   └── utils_scRNA.R             # Shared functions for all scRNA scripts
@@ -39,7 +39,7 @@ main/
 │       └── enrich_scRNA_cd4.R              # CD4-specific MI vs iCDC enrichment
 │
 └── bulk/                            # Bulk RNA-seq workflows
-    ├── README_bulk.md               # Bulk RNA-seq documentation
+    ├── README.md                    # Bulk RNA-seq documentation
     │
     ├── utils_bulk.R                 # Shared bulk enrichment utilities
     │
@@ -80,7 +80,7 @@ Detailed documentation is provided in:
 
 ```
 
-scRNA/README_scRNA.md
+scRNA/README.md
 
 ```
 
@@ -110,7 +110,7 @@ Detailed documentation is provided in:
 
 ```
 
-bulk/README_bulk.md
+bulk/README.md
 
 ```
 
