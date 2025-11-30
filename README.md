@@ -53,7 +53,7 @@ This file provides a unified set of helper functions used across all pipelines:
 * Clustering (Neighbors, FindClusters, UMAP, t-SNE)
 * Sample-wise QC with DoubletFinder
 * Cell-cycle scoring wrapper
-* Filtering helpers (mitochondrial / ribosomal / hemoglobin genes)
+* Filtering helpers (mitochondrial / ribosomal genes)
 * Marker detection wrapper
 * Annotation mapping utilities
 * Plotting functions with a consistent theme
