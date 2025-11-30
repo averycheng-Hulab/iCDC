@@ -19,16 +19,16 @@ bulk/
 │
 ├── utils_bulk.R                       # Shared enrichment + plotting utilities
 │
-├── bulk_1-2.R                         # T cell & DC bulk enrichment (FPKM-based)
-├── bulk_3.R                           # Whole-heart bulk enrichment (TPM-based)
+├── bulk_1-2.R                         # T cell & DC bulk enrichment
+├── bulk_3.R                           # Whole-heart bulk enrichment
 │
 ├── input/                             # (Empty)
-│   ├── bulk_1-2/                      # (Empty) platform Excel DEG tables
-│   └── bulk_3/                        # (Empty) in-house DESeq2 CSV DEG tables
+│   ├── bulk_1-2/                      # (Empty) 
+│   └── bulk_3/                        # (Empty)
 │
 └── output/                            # (Empty)
-├── bulk_1-2/                      # (Empty) enrichment outputs
-└── bulk_3/                        # (Empty) enrichment outputs
+├── bulk_1-2/                      # (Empty) 
+└── bulk_3/                        # (Empty) 
 
 ````
 
