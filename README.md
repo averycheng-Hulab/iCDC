@@ -2,7 +2,7 @@
 
 ---
 
-# Bulk RNA-seq Analysis (Bulk)
+# Bulk RNA-seq Analysis
 
 This directory contains all scripts used for the bulk RNA-seq workflows in this project,  T cell / DC bulk datasets and whole-heart bulk RNA-seq analysis.
 
