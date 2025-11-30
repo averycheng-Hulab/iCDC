@@ -133,7 +133,7 @@ Required columns:
 | `padj`                 | Adjusted p-value |
 | Two expression columns | For FPKM cutoff  |
 
-You must update expression column indices:
+You must update group-average expression column indices:
 
 ```r
 expr_col_idx <- c(8, 9)
