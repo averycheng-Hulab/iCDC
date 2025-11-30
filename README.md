@@ -36,29 +36,29 @@ Users should populate these folders with their own data following the same struc
 ## Repository Structure
 
 main/
-├── README.md                      # This file
+├── README.md                   # This file
 │
 ├── bulk/
-│   ├── README_bulk.md             # Bulk RNA-seq documentation
-│   ├── bulk_1-2.R                 # For T cell / DC bulk DEG enrichment
-│   ├── bulk_3.R                   # For whole-heart bulk DEG enrichment
-│   ├── utils_bulk.R               # Shared bulk functions
-│   ├── input/                     # (Empty; user must provide DEG files)
-│   └── output/                    # (Empty; enrichment results)
+│   ├── README_bulk.md          # Bulk RNA-seq documentation
+│   ├── bulk_1-2.R              # For T cell / DC bulk DEG enrichment
+│   ├── bulk_3.R                # For whole-heart bulk DEG enrichment
+│   ├── utils_bulk.R            # Shared bulk functions
+│   ├── input/                  # (Empty)
+│   └── output/                 # (Empty)
 │
 ├── scRNA/
-│   ├── README_scRNA.md            # scRNA-seq documentation
+│   ├── README_scRNA.md         # scRNA-seq documentation
 │   │
 │   ├── utils/
-│   │   └── utils_scRNA.R          # Shared functions for all scRNA workflows
+│   │   └── utils_scRNA.R       # Shared functions for all scRNA workflows
 │   │
-│   ├── plots/                     # (Empty; for storing figures)
-│   ├── results/                   # (Empty; for storing analysis outputs)
+│   ├── plots/                  # (Empty)
+│   ├── results/                # (Empty)
 │   │
 │   ├── Main/
-│   │   ├── whole_heart_main.R     # Whole-heart scRNA-seq pipeline
-│   │   ├── cd45_main.R            # CD45+ immune compartments
-│   │   └── cd4_T_main.R           # CD4+ T cells
+│   │   ├── whole_heart_main.R  # Whole-heart scRNA-seq pipeline
+│   │   ├── cd45_main.R         # CD45+ immune compartments
+│   │   └── cd4_T_main.R        # CD4+ T cells
 │   │
 │   ├── Subcluster/
 │   │   ├── whole_heart_fibroblast.R
@@ -69,10 +69,11 @@ main/
 │   │   └── cd45_b_subcluster.R
 │   │
 │   └── Enrichment/
-│       ├── enrich_scRNA.R         # General IR vs Sham/DC unified enrichment
-│       └── enrich_scRNA_cd4.R     # CD4-specific MI vs iCDC enrichment
+│       ├── enrich_scRNA.R      # General IR vs Sham/DC unified enrichment
+│       └── enrich_scRNA_cd4.R  # CD4-specific MI vs iCDC enrichment
 │
 └── LICENSE
+
 
 ## Overview of Analysis Modules
 ### scRNA-seq Main Pipelines
