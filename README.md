@@ -13,7 +13,7 @@ This directory contains all scripts used for the single-cell RNA-seq workflows i
 ```
 
 scRNA/
-├── README_scRNA.md                     # This file
+├── README.md                     # This file
 │
 ├── utils/
 │   └── utils_scRNA.R                   # Shared functions for all scRNA workflows
