@@ -4,7 +4,7 @@
 
 # Bulk RNA-seq Analysis (Bulk)
 
-This directory contains all scripts used for the bulk RNA-seq workflows in this project, including platform-derived T cell / DC bulk datasets and in-house whole-heart bulk RNA-seq analysis.
+This directory contains all scripts used for the bulk RNA-seq workflows in this project,  T cell / DC bulk datasets and whole-heart bulk RNA-seq analysis.
 
 All analyses follow a unified GO/KEGG enrichment framework and use shared utilities for Mus musculus functional annotation.
 
@@ -65,12 +65,8 @@ source(file.path("bulk", "utils_bulk.R"))
 
 This module processes **platform-generated FPKM-based** DEG tables (Excel format). It performs:
 
-* Load Excel DEG tables (platform DESeq2 results)
-* Apply **FPKM expression cutoff** (platform-only requirement)
-* DEG filtering:
-
-  * Upregulated: log2FC > 1
-  * Downregulated: log2FC < –1
+* Load DEG tables
+* DEG filtering
 * GO enrichment
 * KEGG enrichment
 * Save:
@@ -96,11 +92,8 @@ This module processes **in-house TPM-based DESeq2 outputs** generated from raw F
 
 It performs:
 
-* Load CSV DEG tables
-* DEG selection criteria:
-
-  * Upregulated: log2FC > 1 & pvalue < 0.01
-  * Downregulated: log2FC < –1 & pvalue < 0.01
+* Load DEG tables
+* DEG filtering
 * GO enrichment
 * KEGG enrichment
 * Compute intersection and trend modules:
