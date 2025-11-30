@@ -1,138 +1,73 @@
 # iCDC
-# Utilities for scRNA-seq Analysis
-This folder contains `utils_scRNA.R`, a shared function library used across
-all single-cell RNA-seq analysis modules, including:
 
-- Main workflows (`whole_heart_main.R`, `cd45_main.R`, `cd4_T_main.R`)
-- Subclustering modules (fibroblast, Mac/Mono/DC, TNK, Neutrophil, B-cell)
-- Enrichment modules
-- TCR module (indirectly, for Seurat object consistency)
+# Project Structure
 
-The utilities ensure unified preprocessing, batch correction, clustering,
-marker detection, and mapping logic across all scRNA pipelines.
+This repository contains the complete analysis pipeline for both **single-cell RNA-seq (scRNA-seq)** and **bulk RNA-seq** components of the study.  
 
 ---
 
-## 📌 Contents of utils_scRNA.R
+## 📁 Repository Structure
 
-### 1. **Preprocessing Wrappers**
-Reusable wrappers for standard single-cell preprocessing:
-
-- `run_sct_pca_harmony()`
-  - SCTransform (with optional regression)
-  - RunPCA
-  - Harmony batch correction
-  - Returns updated Seurat object
-
-- `run_clustering()`
-  - FindNeighbors / FindClusters
-  - UMAP + TSNE embeddings
-  - Configurable dims + resolution
-
-These wrappers ensure that all main and subcluster pipelines use the same
-integration and clustering logic.
-
----
-
-## 2. **Marker & DEG Utilities**
-Functions used by main pipelines and subclustering:
-
-- `find_all_markers_wrapper()`
-- `save_markers()`
-- tidy marker output formatter  
-- auto-export to CSV
-
----
-
-## 3. **Annotation Tools**
-General annotation helper functions:
-
-- `annotate_by_cluster()`  
-  Apply a named vector mapping (cluster → label) to a Seurat object.
-
-- `merge_annotation_back()`  
-  Merge refined annotations (from a subcluster object) back into the
-  parent object.
-
-These tools are used extensively in:
-- Fibroblast refinement (FibType1 / FibType2 / FibType)
-- Mac/Mono/DC (MacType1 → refined → final)
-- TNK / Neutrophil / B-cell supervised mappings
+```
+main/
+├── README.md                   # This file
+│
+├── bulk/
+│   ├── README_bulk.md          # Bulk RNA-seq documentation
+│   ├── bulk_1-2.R              # For T cell / DC bulk DEG enrichment
+│   ├── bulk_3.R                # For whole-heart bulk DEG enrichment
+│   ├── utils_bulk.R            # Shared bulk functions
+│   ├── input/                  # (Empty)
+│   └── output/                 # (Empty)
+│
+├── scRNA/
+│   ├── README_scRNA.md         # scRNA-seq documentation
+│   │
+│   ├── utils/
+│   │   └── utils_scRNA.R       # Shared functions for all scRNA workflows
+│   │
+│   ├── plots/                  # (Empty)
+│   ├── results/                # (Empty)
+│   │
+│   ├── Main/
+│   │   ├── whole_heart_main.R  # Whole-heart scRNA-seq pipeline
+│   │   ├── cd45_main.R         # CD45+ immune compartments
+│   │   └── cd4_T_main.R        # CD4+ T cells
+│   │
+│   ├── Subcluster/
+│   │   ├── whole_heart_fibroblast.R
+│   │   ├── whole_heart_fibroblast_ecm.R
+│   │   ├── cd45_MacMonoDc_subcluster.R
+│   │   ├── cd45_tnk_subcluster.R
+│   │   ├── cd45_neutrophil_subcluster.R
+│   │   └── cd45_b_subcluster.R
+│   │
+│   └── Enrichment/
+│       ├── enrich_scRNA.R      # General IR vs Sham/DC unified enrichment
+│       └── enrich_scRNA_cd4.R  # CD4-specific MI vs iCDC enrichment
+│
+└── LICENSE
+```
 
 ---
 
-## 4. **Subclustering Support (ALL Modules)**
+## 🔒 Data Availability
 
-This section provides reusable helpers for all downstream subclustering modules.
+To protect unpublished data, **all data and result folders are intentionally left empty**:
 
-### 🟦 **Fibroblast Subclustering**
-Used in:
-- `whole_heart_fibroblast.R`
-- `whole_heart_fibroblast_ecm.R`
+- `bulk/input/`
+- `bulk/output/`
+- `scRNA/plots/`
+- `scRNA/results/`
 
-Functions support:
-- extraction of fibroblast clusters  
-- re-normalization and Harmony batch correction  
-- ECM score generation  
-- fibroblast type annotation merging  
-
-### 🟧 **Macrophage / Monocyte / DC**
-Used in `cd45_MacMonoDc_subcluster.R`:
-
-- selection of immune-myeloid clusters  
-- global + fine SCTransform reprocessing  
-- supervised annotation (MacType1 / MacType2 / refined)  
-- merge refined MacType into the CD45 main object  
-
-### 🟩 **TNK subclustering**
-Used in `cd45_tnk_subcluster.R`:
-
-- selection of T/NK clusters  
-- Harmony correction & re-clustering  
-- TNKType1 annotation  
-
-### 🟨 **Neutrophil subclustering**
-Used in `cd45_neutrophil_subcluster.R`:
-
-- extraction of neutrophils  
-- clustering and annotation into NeutType1  
-
-### 🟧 **B-cell subclustering**
-Used in `cd45_b_subcluster.R`:
-
-- clustering  
-- supervised BType1 annotation  
-
-All modules use the same SCTransform → PCA → Harmony → clustering utilities.
+Only the **full codebase** is provided to ensure complete reproducibility *without exposing sensitive information*.
 
 ---
 
-## 5. **Plotting Utilities**
-Simple ggplot-based functions used across the project:
+## 📘 Notes
 
-- common theme (`plot_theme_common()`)
-- save function (`save_plot()`)
-- bubble plot helpers (if needed by enrichment)
-
----
-
-## 6. **Why This Matters**
-Without `utils_scRNA.R`, each subpipeline would independently duplicate the
-same methods—making the analysis inconsistent and harder to maintain.
-
-With utilities:
-
-- All batch correction is identical  
-- All clustering parameters are standardized  
-- All annotation mapping uses the same API  
-- Subcluster modules become shorter and safer  
-- Cross-module reproducibility is 100% guaranteed  
+- All analysis scripts are written in **R**, validated end-to-end, and modularized via `utils_bulk.R` and `utils_scRNA.R`.
+- The repository follows a strict structure to support future expansion and automated workflows.
+- Subcluster modules, enrichment modules, and whole-heart/CD45/CD4 pipelines are fully separated for clarity.
 
 ---
-
-## Location
-`scRNA/utils/utils_scRNA.R`
-
-This file is sourced by all main and subcluster scripts:
-```r
-source("scRNA/utils/utils_scRNA.R")
