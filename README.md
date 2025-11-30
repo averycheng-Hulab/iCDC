@@ -1,6 +1,6 @@
 # iCDC
 
-📌 Integrated scRNA-seq & Bulk RNA-seq Analysis Pipeline
+## scRNA-seq & Bulk RNA-seq Analysis Pipeline
 
 This repository contains the full analysis framework used in this study, including:
 
@@ -16,7 +16,7 @@ Unified utilities for reproducibility
 
 The goal of this repository is to provide fully reproducible pipelines without exposing any unpublished biological data.
 
-🔒 Data Availability & Confidentiality
+## Data Availability & Confidentiality
 
 To protect unpublished data, all data and result folders are intentionally left empty.
 Only analysis code is provided to ensure full reproducibility without leaking sensitive biological information.
@@ -31,13 +31,9 @@ bulk/input/
 
 bulk/output/
 
-data_raw/ (if used)
-
-data_processed/ (if used)
-
 Users should populate these folders with their own data following the same structure.
 
-📁 Repository Structure
+## Repository Structure
 main/
 ├── README.md                      # This file
 │
@@ -75,10 +71,10 @@ main/
 │       ├── enrich_scRNA.R         # General IR vs Sham/DC unified enrichment
 │       └── enrich_scRNA_cd4.R     # CD4-specific MI vs iCDC enrichment
 │
-└── LICENSE (optional)
+└── LICENSE
 
-🧬 Overview of Analysis Modules
-1️⃣ scRNA-seq Main Pipelines
+## Overview of Analysis Modules
+### scRNA-seq Main Pipelines
 
 Located in scRNA/Main/, these scripts perform:
 
@@ -96,7 +92,7 @@ Cell type annotation (supervised rules + marker genes)
 
 Object saving for downstream analysis
 
-2️⃣ Subcluster Workflows
+### Subcluster Workflows
 
 Located in scRNA/Subcluster/, handling:
 
@@ -110,7 +106,7 @@ Marker-based subtype inference
 
 All subcluster scripts rely on utils_scRNA.R for standardized processing.
 
-3️⃣ Enrichment Analysis
+### Enrichment Analysis
 
 Located in scRNA/Enrichment/:
 
@@ -122,7 +118,7 @@ GO/KEGG enrichment performed via clusterProfiler
 
 Bubble plots output to folder
 
-4️⃣ Bulk RNA-seq Module
+### Bulk RNA-seq Module
 
 Located in bulk/:
 
@@ -134,7 +130,8 @@ All downstream GO/KEGG analyses standardized to DESeq2 DEG input
 
 Functions centralized in utils_bulk.R
 
-▶️ How to Run
+## How to Run
+
 scRNA-seq
 source("scRNA/Main/whole_heart_main.R")
 source("scRNA/Subcluster/whole_heart_fibroblast.R")
@@ -151,7 +148,7 @@ run_enrich_scRNA(
     outdir = "enrich_FSL"
 )
 
-🤝 Reproducibility Notes
+## Reproducibility Notes
 
 All pipelines require R ≥ 4.2
 
