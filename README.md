@@ -1,6 +1,6 @@
 # iCDC
 
-This repository contains all analysis scripts for both **single-cell RNA-seq (scRNA-seq)** and **bulk RNA-seq** pipelines used in this project.  
+This repository contains all analysis scripts for both **single-cell RNA-seq (scRNA-seq)** and **bulk RNA-seq** analysis pipelines used in this project.  
 It is designed for transparent and reproducible analysis, while ensuring strict protection of unpublished data.
 
 ---
