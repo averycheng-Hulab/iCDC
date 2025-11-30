@@ -1,40 +1,15 @@
 # iCDC
 
-## scRNA-seq & Bulk RNA-seq Analysis Pipeline
+# Project Structure
 
-This repository contains the full analysis framework used in this study, including:
+This repository contains the complete analysis pipeline for both **single-cell RNA-seq (scRNA-seq)** and **bulk RNA-seq** components of the study.  
+All code is fully reproducible, while data directories are intentionally left empty to protect unpublished data.
 
-Single-cell RNA-seq (scRNA-seq) processing
+---
 
-Immune subcluster workflows
+## 📁 Repository Structure
 
-Functional enrichment analysis (GO/KEGG)
-
-Bulk RNA-seq DEG analysis
-
-Unified utilities for reproducibility
-
-The goal of this repository is to provide fully reproducible pipelines without exposing any unpublished biological data.
-
-## Data Availability & Confidentiality
-
-To protect unpublished data, all data and result folders are intentionally left empty.
-Only analysis code is provided to ensure full reproducibility without leaking sensitive biological information.
-
-The following folders are intentionally empty:
-
-scRNA/plots/
-
-scRNA/results/
-
-bulk/input/
-
-bulk/output/
-
-Users should populate these folders with their own data following the same structure.
-
-## Repository Structure
-
+```
 main/
 ├── README.md                   # This file
 │
@@ -73,90 +48,28 @@ main/
 │       └── enrich_scRNA_cd4.R  # CD4-specific MI vs iCDC enrichment
 │
 └── LICENSE
+```
 
+---
 
+## 🔒 Data Availability
 
-## Overview of Analysis Modules
-### scRNA-seq Main Pipelines
+To protect unpublished data, **all data and result folders are intentionally left empty**:
 
-Located in scRNA/Main/, these scripts perform:
+- `bulk/input/`
+- `bulk/output/`
+- `scRNA/plots/`
+- `scRNA/results/`
 
-Quality control (QC)
+Only the **full codebase** is provided to ensure complete reproducibility *without exposing sensitive information*.
 
-Doublet removal
+---
 
-SCTransform normalization
+## 📘 Notes
 
-PCA / Harmony batch correction
+- All analysis scripts are written in **R**, validated end-to-end, and modularized via `utils_bulk.R` and `utils_scRNA.R`.
+- The repository follows a strict structure to support future expansion and automated workflows.
+- Subcluster modules, enrichment modules, and whole-heart/CD45/CD4 pipelines are fully separated for clarity.
 
-Clustering, UMAP/tSNE visualization
+---
 
-Cell type annotation (supervised rules + marker genes)
-
-Object saving for downstream analysis
-
-### Subcluster Workflows
-
-Located in scRNA/Subcluster/, handling:
-
-Fibroblast & ECM modules
-
-CD45⁺ immune compartments (T/NK, B, Neutrophil, MacMonoDC)
-
-Reclustering and refined annotation
-
-Marker-based subtype inference
-
-All subcluster scripts rely on utils_scRNA.R for standardized processing.
-
-### Enrichment Analysis
-
-Located in scRNA/Enrichment/:
-
-enrich_scRNA.R: Generic IR vs Sham/DC enrichment across any celltype
-
-enrich_scRNA_cd4.R: CD4-specific MI vs iCDC analysis
-
-GO/KEGG enrichment performed via clusterProfiler
-
-Bubble plots output to folder
-
-### Bulk RNA-seq Module
-
-Located in bulk/:
-
-bulk_1-2: T cell/DC bulk DEG (platform-generated)
-
-bulk_3: Whole-heart bulk DEG (in-house pipeline)
-
-All downstream GO/KEGG analyses standardized to DESeq2 DEG input
-
-Functions centralized in utils_bulk.R
-
-## How to Run
-
-scRNA-seq
-source("scRNA/Main/whole_heart_main.R")
-source("scRNA/Subcluster/whole_heart_fibroblast.R")
-source("scRNA/Enrichment/enrich_scRNA.R")
-
-Bulk RNA-seq
-source("bulk/bulk_1-2.R")
-source("bulk/bulk_3.R")
-
-Enrichment example
-run_enrich_scRNA(
-    obj = fib_sl_object,
-    celltype = "F-SL",
-    outdir = "enrich_FSL"
-)
-
-## Reproducibility Notes
-
-All pipelines require R ≥ 4.2
-
-All scripts use SCTransform and Harmony for batch correction
-
-All cluster annotations follow fixed mapping rules (documented in subcluster scripts)
-
-Code is modular and function-driven using utils_scRNA.R & utils_bulk.R
