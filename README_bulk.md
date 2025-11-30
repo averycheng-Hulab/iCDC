@@ -15,7 +15,7 @@ All analyses follow a unified GO/KEGG enrichment framework and use shared utilit
 ```
 
 bulk/
-├── README_bulk.md                     # This file
+├── README.md                     # This file
 │
 ├── utils_bulk.R                       # Shared enrichment + plotting utilities
 │
