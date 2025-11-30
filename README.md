@@ -34,6 +34,7 @@ bulk/output/
 Users should populate these folders with their own data following the same structure.
 
 ## Repository Structure
+
 main/
 ├── README.md                      # This file
 │
