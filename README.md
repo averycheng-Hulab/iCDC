@@ -4,14 +4,11 @@ This repository contains all analysis scripts for both **single-cell RNA-seq (sc
 It is designed for transparent and reproducible analysis, while ensuring strict protection of unpublished data.
 
 ---
-
-# 📁 Repository Structure
+## 📁 Repository Structure
 
 ```
-
 main/
-├── README.md                         # This file
-│
+├── README.md                         # Top-level project documentation
 ├── LICENSE                           # Open-source license
 │
 ├── scRNA/                            # Single-cell RNA-seq workflows
@@ -24,45 +21,46 @@ main/
 │   ├── results/                      # (Empty)
 │   │
 │   ├── Main/
-│   │   ├── whole_heart_main.R
-│   │   ├── cd45_main.R
-│   │   └── cd4_T_main.R
+│   │   ├── whole_heart_main.R        # Whole-heart scRNA integration workflow
+│   │   ├── cd45_main.R               # CD45+ immune compartment analysis
+│   │   └── cd4_T_main.R              # CD4+ T-cell analysis
 │   │
 │   ├── Subcluster/
-│   │   ├── whole_heart_fibroblast.R
-│   │   ├── whole_heart_fibroblast_ecm.R
-│   │   ├── cd45_MacMonoDc_subcluster.R
-│   │   ├── cd45_tnk_subcluster.R
-│   │   ├── cd45_neutrophil_subcluster.R
-│   │   ├── cd45_b_subcluster.R
-│   │   └── cd4_T_TCR_module.R
+│   │   ├── whole_heart_fibroblast.R        # Fibroblast re-clustering
+│   │   ├── whole_heart_fibroblast_ecm.R    # Fibroblast ECM regulator program
+│   │   ├── cd45_MacMonoDc_subcluster.R     # Monocyte / Mac / DC subclustering
+│   │   ├── cd45_tnk_subcluster.R           # T/NK subclustering
+│   │   ├── cd45_neutrophil_subcluster.R    # Neutrophil subclustering
+│   │   ├── cd45_b_subcluster.R             # B-cell subclustering
+│   │   └── cd4_T_TCR_module.R              # CD4 TCR integration / clonotype module
 │   │
 │   └── Enrichment/
-│       ├── enrich_scRNA.R
-│       └── enrich_scRNA_cd4.R
+│       ├── enrich_scRNA.R                  # General IR vs Sham/DC enrichment
+│       └── enrich_scRNA_cd4.R              # CD4-specific MI vs iCDC enrichment
 │
-└── bulk/                             # Bulk RNA-seq workflows
-├── README_bulk.md                # Bulk RNA-seq documentation
-│
-├── utils_bulk.R                  # Shared bulk enrichment utilities
-│
-├── bulk_1-2.R                    # T-cell / DC bulk DEG enrichment
-├── bulk_3.R                      # Whole-heart bulk DEG enrichment
-│
-├── input/                        # (Empty)
-└── output/                       # (Empty)
+└── bulk/                            # Bulk RNA-seq workflows
+    ├── README_bulk.md               # Bulk RNA-seq documentation
+    │
+    ├── utils_bulk.R                 # Shared bulk enrichment utilities
+    │
+    ├── bulk_1-2.R                   # T-cell & DC bulk enrichment (platform FPKM DEGs)
+    ├── bulk_3.R                     # Whole-heart bulk enrichment (in-house DESeq2)
+    │
+    ├── input/                       # (Empty)
+    └── output/                      # (Empty)
+
 
 ```
 
 ---
 
-# 🔬 **Overview of Analyses**
+#  **Overview of Analyses**
 
 This repository implements two major transcriptomics analysis modules:
 
 ---
 
-## 1️⃣ **Single-Cell RNA-seq (scRNA)**
+##  **Single-Cell RNA-seq (scRNA)**
 
 Located under `scRNA/`.
 
@@ -88,26 +86,23 @@ scRNA/README_scRNA.md
 
 ---
 
-## 2️⃣ **Bulk RNA-seq**
+##  **Bulk RNA-seq**
 
 Located under `bulk/`.
 
 Includes two distinct data sources:
 
 ### **bulk_1–2**  
-(FPKM-based DEGs provided by sequencing platform)
+(T cell/DC bulk RNA-seq)
 
-- T cell bulk RNA-seq  
-- DC bulk RNA-seq  
-- DEGs filtered by expression cutoff  
+- DEGs tables
 - GO/KEGG enrichment  
 - Intersection sets where relevant  
 
 ### **bulk_3**  
-(Whole-heart bulk RNA-seq, reprocessed locally)
-
-- Raw FASTQs aligned & quantified in-house  
-- DESeq2 DEG tables (TPM-based)  
+(Whole-heart bulk RNA-seq)
+  
+ DEG tables  
 - GO/KEGG enrichment  
 - Trend analysis across contrasts  
 
@@ -121,17 +116,9 @@ bulk/README_bulk.md
 
 ---
 
-# 🔐 **Data Availability & Privacy**
+#  **Data Availability & Privacy**
 
-Because this repository reflects **unpublished data**, no data files are included:
-
-- No `.Rds` Seurat objects  
-- No raw/processed matrices  
-- No metadata tables  
-- No FASTQ, CSV, Excel tables  
-- No figures or result files  
-
-Directories intentionally left empty include:
+Because this repository reflects **unpublished data**, directories intentionally left empty include:
 
 - `scRNA/plots/`
 - `scRNA/results/`
@@ -143,7 +130,7 @@ Directories intentionally left empty include:
 
 ---
 
-# 🛠 **Software Requirements**
+#  **Software Requirements**
 
 - **R ≥ 4.1**
 - **Seurat ≥ 4.3**
