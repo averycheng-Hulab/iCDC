@@ -1,39 +1,32 @@
 # iCDC
 
-# Project Structure
-
-This repository contains the complete analysis pipeline for both **single-cell RNA-seq (scRNA-seq)** and **bulk RNA-seq** components of the study.  
-All code is fully reproducible, while data directories are intentionally left empty to protect unpublished data.
+This repository contains all analysis scripts for both **single-cell RNA-seq (scRNA-seq)** and **bulk RNA-seq** pipelines used in this project.  
+It is designed for transparent and reproducible analysis, while ensuring strict protection of unpublished data.
 
 ---
 
-## 📁 Repository Structure
+# 📁 Repository Structure
 
 ```
+
 main/
-├── README.md                   # This file
+├── README.md                         # This file
 │
-├── bulk/
-│   ├── README_bulk.md          # Bulk RNA-seq documentation
-│   ├── bulk_1-2.R              # For T cell / DC bulk DEG enrichment
-│   ├── bulk_3.R                # For whole-heart bulk DEG enrichment
-│   ├── utils_bulk.R            # Shared bulk functions
-│   ├── input/                  # (Empty)
-│   └── output/                 # (Empty)
+├── LICENSE                           # Open-source license
 │
-├── scRNA/
-│   ├── README_scRNA.md         # scRNA-seq documentation
+├── scRNA/                            # Single-cell RNA-seq workflows
+│   ├── README_scRNA.md               # scRNA documentation
 │   │
 │   ├── utils/
-│   │   └── utils_scRNA.R       # Shared functions for all scRNA workflows
+│   │   └── utils_scRNA.R             # Shared functions for all scRNA scripts
 │   │
-│   ├── plots/                  # (Empty)
-│   ├── results/                # (Empty)
+│   ├── plots/                        # (Empty)
+│   ├── results/                      # (Empty)
 │   │
 │   ├── Main/
-│   │   ├── whole_heart_main.R  # Whole-heart scRNA-seq pipeline
-│   │   ├── cd45_main.R         # CD45+ immune compartments
-│   │   └── cd4_T_main.R        # CD4+ T cells
+│   │   ├── whole_heart_main.R
+│   │   ├── cd45_main.R
+│   │   └── cd4_T_main.R
 │   │
 │   ├── Subcluster/
 │   │   ├── whole_heart_fibroblast.R
@@ -41,35 +34,135 @@ main/
 │   │   ├── cd45_MacMonoDc_subcluster.R
 │   │   ├── cd45_tnk_subcluster.R
 │   │   ├── cd45_neutrophil_subcluster.R
-│   │   └── cd45_b_subcluster.R
+│   │   ├── cd45_b_subcluster.R
+│   │   └── cd4_T_TCR_module.R
 │   │
 │   └── Enrichment/
-│       ├── enrich_scRNA.R      # General IR vs Sham/DC unified enrichment
-│       └── enrich_scRNA_cd4.R  # CD4-specific MI vs iCDC enrichment
+│       ├── enrich_scRNA.R
+│       └── enrich_scRNA_cd4.R
 │
-└── LICENSE
+└── bulk/                             # Bulk RNA-seq workflows
+├── README_bulk.md                # Bulk RNA-seq documentation
+│
+├── utils_bulk.R                  # Shared bulk enrichment utilities
+│
+├── bulk_1-2.R                    # T-cell / DC bulk DEG enrichment
+├── bulk_3.R                      # Whole-heart bulk DEG enrichment
+│
+├── input/                        # (Empty)
+└── output/                       # (Empty)
+
 ```
 
 ---
 
-## 🔒 Data Availability
+# 🔬 **Overview of Analyses**
 
-To protect unpublished data, **all data and result folders are intentionally left empty**:
+This repository implements two major transcriptomics analysis modules:
 
-- `bulk/input/`
-- `bulk/output/`
+---
+
+## 1️⃣ **Single-Cell RNA-seq (scRNA)**
+
+Located under `scRNA/`.
+
+Includes:
+
+- Whole-heart multi-sample integration
+- Immune-cell extraction (CD45)
+- CD4 T-cell profiling
+- Fibroblast re-clustering & ECM regulator program analysis
+- Immune subclustering (Mac/Mono/DC, T/NK, Neutrophils, B-cells)
+- CD4 T-cell TCR clonotype integration
+- Unified GO/KEGG enrichment modules
+
+All scripts share a unified analytical framework provided through `utils_scRNA.R`.
+
+Detailed documentation is provided in:
+
+```
+
+scRNA/README_scRNA.md
+
+```
+
+---
+
+## 2️⃣ **Bulk RNA-seq**
+
+Located under `bulk/`.
+
+Includes two distinct data sources:
+
+### **bulk_1–2**  
+(FPKM-based DEGs provided by sequencing platform)
+
+- T cell bulk RNA-seq  
+- DC bulk RNA-seq  
+- DEGs filtered by expression cutoff  
+- GO/KEGG enrichment  
+- Intersection sets where relevant  
+
+### **bulk_3**  
+(Whole-heart bulk RNA-seq, reprocessed locally)
+
+- Raw FASTQs aligned & quantified in-house  
+- DESeq2 DEG tables (TPM-based)  
+- GO/KEGG enrichment  
+- Trend analysis across contrasts  
+
+Detailed documentation is provided in:
+
+```
+
+bulk/README_bulk.md
+
+```
+
+---
+
+# 🔐 **Data Availability & Privacy**
+
+Because this repository reflects **unpublished data**, no data files are included:
+
+- No `.Rds` Seurat objects  
+- No raw/processed matrices  
+- No metadata tables  
+- No FASTQ, CSV, Excel tables  
+- No figures or result files  
+
+Directories intentionally left empty include:
+
 - `scRNA/plots/`
 - `scRNA/results/`
+- `bulk/input/`
+- `bulk/output/`
 
-Only the **full codebase** is provided to ensure complete reproducibility *without exposing sensitive information*.
+> **To protect unpublished data, all data and result folders are intentionally left empty.  
+> Only code is provided to ensure reproducibility without exposing sensitive information.**
+
+---
+
+# 🛠 **Software Requirements**
+
+- **R ≥ 4.1**
+- **Seurat ≥ 4.3**
+- **harmony**
+- **DoubletFinder**
+- **clusterProfiler**
+- **org.Mm.eg.db**
+- **writexl**
+- **ggplot2 / dplyr / stringr / patchwork**
+
+Each subfolder README contains additional script-specific requirements.
 
 ---
 
-## 📘 Notes
+# 👤 Maintainer
 
-- All analysis scripts are written in **R**, validated end-to-end, and modularized via `utils_bulk.R` and `utils_scRNA.R`.
-- The repository follows a strict structure to support future expansion and automated workflows.
-- Subcluster modules, enrichment modules, and whole-heart/CD45/CD4 pipelines are fully separated for clarity.
+**Guo Cheng**  
 
----
+Department of Cardiology，The Second Affiliated Hospital, School of Medicine, Zhejiang University
+Research Center for Life Science and Human Health, Binjiang Institute of Zhejiang University
+
 
