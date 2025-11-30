@@ -3,7 +3,7 @@
 
 ---
 
-# 📘 **README_scRNA.md**
+#  **README_scRNA.md**
 
 # Single-Cell RNA-seq Analysis (scRNA)
 
@@ -221,7 +221,7 @@ Only scripts are provided.
 
 ---
 
-#  **7. Maintainer:Guo Cheng**
+#  **7. Maintainer: Guo Cheng**
 
 
 ---
