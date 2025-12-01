@@ -214,7 +214,7 @@ seuobj_macmonodc_sel <- subset(
 )
 
 pc_dims_sel <- 1:10
-res_sel     <- 0.8
+res_sel     <- 1.2
 
 seuobj_macmonodc_sel <- run_sct_pca_harmony(
   seu            = seuobj_macmonodc_sel,
