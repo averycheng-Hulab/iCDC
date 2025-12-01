@@ -22,11 +22,11 @@ bulk/
 ├── bulk_1-2.R                         # T cell & DC bulk enrichment
 ├── bulk_3.R                           # Whole-heart bulk enrichment
 │
-├── input/                             # (Empty)
+├── input/                             
 │   ├── bulk_1-2/                      # (Empty) 
 │   └── bulk_3/                        # (Empty)
 │
-└── output/                            # (Empty)
+└── output/                           
 ├── bulk_1-2/                      # (Empty) 
 └── bulk_3/                        # (Empty) 
 
