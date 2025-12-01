@@ -1,0 +1,62 @@
+# R / RStudio files
+.Rhistory
+.RData
+.Ruserdata
+.Rapp.history
+.Rproj.user/
+*.Rproj
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.log
+*.aux
+*.out
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data files (strict: ignore all)
+*.csv
+*.tsv
+*.txt
+*.xlsx
+*.rds
+*.rdata
+*.RData
+*.h5
+*.h5ad
+*.h5seurat
+*.mtx
+*.loom
+*.gz
+
+# Single-cell heavy objects
+seurat_*
+
+# Plots / figures
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+# Cache / dependency directories
+cache/
+*_cache/
+checkpoint/
+renv/library/
+renv/staging/
+
+# Logs / temp dirs
+logs/
+temp/
+tmp/
