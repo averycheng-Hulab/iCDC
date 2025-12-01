@@ -10,7 +10,8 @@ It is designed for transparent and reproducible analysis, while ensuring strict 
 main/
 ├── README.md                         # Top-level project documentation
 ├── LICENSE                           
-├── CITATION.cff                      
+├── CITATION.cff
+├── .gitignore                       
 │
 ├── scRNA/                            # Single-cell RNA-seq workflows
 │   ├── README.md                     # scRNA documentation
