@@ -143,13 +143,16 @@ write.csv(markers_pre, "r_objects/fibro_markers_by_cluster.csv", row.names=FALSE
 ## 6. Manual annotation (FibType)
 ## ---------------------------------------------------------------------------
 
+# remove non-fibroblast contamination (endothelial-like cluster 17)
+seu_fibro <- subset(seu_fibro, subset = seurat_clusters != 17)
+
 fibro_map <- c(
-  "0"="F-SL",
-  "1"="F-SH",
-  "2"="F-Myo",
-  "3"="F-Act",
-  "4"="F-IFNs",
-  "5"="F-IR"
+  "0"="F-SL","1"="F-SL","2"="F-SL","6"="F-SL","8"="F-SL","9"="F-SL",
+  "3"="F-SH","4"="F-SH","7"="F-SH","16"="F-SH",
+  "10"="F-Myo","11"="F-Myo","13"="F-Myo","18"="F-Myo",
+  "5"="F-Act","12"="F-Act",
+  "14"="F-IFNs",
+  "15"="F-IR"
 )
 
 seu_fibro <- annotate_by_cluster(
@@ -160,7 +163,7 @@ seu_fibro <- annotate_by_cluster(
 
 seu_fibro$FibType <- factor(
   seu_fibro$FibType,
-  levels = c("F-SL","F-SH","F-Myo","F-Act","F-IFNs","F-IR","Other")
+  levels = c("F-SL","F-SH","F-Myo","F-Act","F-IFNs","F-IR")
 )
 
 
