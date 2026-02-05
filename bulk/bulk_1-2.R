@@ -32,7 +32,7 @@ suppressPackageStartupMessages({
 })
 
 # Source shared utilities
-source(file.path("bulk", "utils_bulk.R"))
+source(file.path("bulk","utils","utils_bulk.R"))
 
 ############################################################
 # 1. User settings
