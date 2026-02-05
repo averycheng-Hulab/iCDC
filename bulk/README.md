@@ -153,7 +153,6 @@ Required columns:
 | `padj`           | Adjusted p-value |
 | TPM columns      | One or more      |
 
-**No TPM expression cutoff is used**, as DESeq2 uses raw counts and statistical filtering.
 
 ---
 
@@ -174,14 +173,11 @@ These are saved into the corresponding output folders:
 bulk/output/bulk_1-2/
 bulk/output/bulk_3/
 ```
-
-These folders are intentionally empty in the repository.
-
 ---
 
 # **5. Data Availability and Privacy**
 
-Because this repository is associated with **unpublished work**, no data files are included:
+Because this repository is associated with **unpublished work**, only demo data files are included:
 
 * `bulk/input/`
 * `bulk/output/`
@@ -190,7 +186,7 @@ Because this repository is associated with **unpublished work**, no data files a
 
 Only analysis **code** is provided.
 
-> **To protect unpublished data, all data and result folders are intentionally left empty.
+> **To protect unpublished data, all data and result folders are deposited with demo data.
 > Only code is provided to ensure reproducibility without exposing sensitive information.**
 
 ---
