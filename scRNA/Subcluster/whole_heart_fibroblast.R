@@ -40,7 +40,7 @@ library(patchwork)
 library(clustree)
 library(SCP)
 
-source("utils_scRNA.R")
+source(file.path("scRNA","utils","utils_scRNA.R"))
 
 dir.create("fibroblast_plots", showWarnings = FALSE)
 dir.create("r_objects", showWarnings = FALSE)
