@@ -30,7 +30,7 @@ suppressPackageStartupMessages({
 })
 
 # Load utilities: theme + save_plot
-source("utils_scRNA.R")
+source(file.path("scRNA","utils","utils_scRNA.R"))
 
 options(stringsAsFactors = FALSE)
 options(future.globals.maxSize = 10 * 1024^3)
