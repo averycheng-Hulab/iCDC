@@ -9,7 +9,7 @@
 #
 # - Steps:
 #     1) Load fibroblast Seurat object
-#     2) Load ECM_regulators.tsv
+#     2) Load ECM_regulators.csv
 #     3) Compute ECM_Regulator_Score via AddModuleScore
 #     4) Visualize ECM_Regulator_Score on UMAP
 #     5) Violin plots of ECM_Regulator_Score by FibType and Treatment
@@ -73,18 +73,15 @@ if ("SCT" %in% names(seuobj_fibro@assays)) {
 ## 2. Load ECM Regulator list only
 ## ---------------------------------------------------------------------------
 
-reg_file <- file.path("ECM_genelist", "ECMregulators.tsv")
+reg_file <- file.path("ECM_genelist", "ECMregulators.csv")
 
 if (!file.exists(reg_file)) {
-  stop("ECMregulators.tsv not found in ECM_genelist/.")
+  stop("ECMregulators.csv not found in ECM_genelist/.")
 }
 
-reg_frame <- read.table(
+reg_frame <- read.csv(
   reg_file,
-  sep = "\t",
-  header = TRUE,
-  stringsAsFactors = FALSE,
-  check.names = FALSE
+  header = TRUE
 )
 
 reg_genes_raw <- reg_frame[[1]]
