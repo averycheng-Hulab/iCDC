@@ -40,7 +40,7 @@ library(patchwork)
 library(stringr)
 library(scRepertoire)
 
-source("utils_scRNA.R")   # ★ 使用统一的 plot_theme_common / save_plot
+source(file.path("scRNA","utils","utils_scRNA.R"))
 
 options(stringsAsFactors = FALSE)
 options(future.globals.maxSize = 10 * 1024^3)
