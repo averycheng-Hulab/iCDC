@@ -52,7 +52,7 @@ This file provides shared helper functions used by all bulk analysis scripts:
 All bulk workflows import this file:
 
 ```r
-source(file.path("bulk", "utils_bulk.R"))
+source(file.path("bulk","utils","utils_bulk.R"))
 ````
 
 ---
