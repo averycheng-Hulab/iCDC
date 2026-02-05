@@ -35,7 +35,7 @@ library(dplyr)
 library(ggplot2)
 library(patchwork)
 
-source("utils_scRNA.R")
+source(file.path("scRNA","utils","utils_scRNA.R"))
 
 options(stringsAsFactors = FALSE)
 options(future.globals.maxSize = 10 * 1024^3)
