@@ -19,16 +19,16 @@ bulk/
 │
 ├── utils_bulk.R                       # Shared enrichment + plotting utilities
 │
-├── bulk_1-2.R                         # T cell & DC bulk enrichment
+├── bulk_1-2.R                         # in vitro cell (T cell/DC) bulk enrichment
 ├── bulk_3.R                           # Whole-heart bulk enrichment
 │
-├── input/                             
-│   ├── bulk_1-2/                      # (Empty) 
-│   └── bulk_3/                        # (Empty)
+├── demo_input/                             
+│   ├── bulk_1-2/                      #
+│   └── bulk_3/                        #
 │
-└── output/                           
-├── bulk_1-2/                      # (Empty) 
-└── bulk_3/                        # (Empty) 
+└── demo_output/                           
+├── bulk_1-2/                      #
+└── bulk_3/                        # 
 
 ````
 
