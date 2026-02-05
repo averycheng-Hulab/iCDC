@@ -19,8 +19,6 @@ main/
 │   ├── utils/
 │   │   └── utils_scRNA.R             # Shared functions for all scRNA scripts
 │   │
-│   ├── plots/                        # (Empty)
-│   ├── results/                      # (Empty)
 │   │
 │   ├── Main/
 │   │   ├── whole_heart_main.R        # Whole-heart scRNA integration workflow
@@ -43,13 +41,14 @@ main/
 └── bulk/                            # Bulk RNA-seq workflows
     ├── README.md                    # Bulk RNA-seq documentation
     │
-    ├── utils_bulk.R                 # Shared bulk enrichment utilities
+    ├── utils                 
+    │   └── utils_scRNA.R            # Shared bulk enrichment utilities
     │
-    ├── bulk_1-2.R                   # T-cell & DC bulk enrichment (platform FPKM DEGs)
-    ├── bulk_3.R                     # Whole-heart bulk enrichment (in-house DESeq2)
+    ├── bulk_1-2.R                   # T-cell & DC bulk enrichment
+    ├── bulk_3.R                     # Whole-heart bulk enrichment
     │
-    ├── input/                       # (Empty)
-    └── output/                      # (Empty)
+    ├── demo_input/                        
+    └── demo_output/                      
 
 
 ```
