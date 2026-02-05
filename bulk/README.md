@@ -4,7 +4,7 @@
 
 # Bulk RNA-seq Analysis
 
-This directory contains all scripts used for the bulk RNA-seq workflows in this project,  T cell / DC bulk datasets and whole-heart bulk RNA-seq analysis.
+This directory contains all scripts used for the bulk RNA-seq workflows in this project,  in vitro cell (T/DC) bulk datasets and whole-heart bulk RNA-seq analysis.
 
 All analyses follow a unified GO/KEGG enrichment framework and use shared utilities for Mus musculus functional annotation.
 
@@ -19,7 +19,7 @@ bulk/
 │
 ├── utils_bulk.R                       # Shared enrichment + plotting utilities
 │
-├── bulk_1-2.R                         # in vitro cell (T cell/DC) bulk enrichment
+├── bulk_1-2.R                         # in vitro cell (T/DC) bulk enrichment
 ├── bulk_3.R                           # Whole-heart bulk enrichment
 │
 ├── demo_input/                             
@@ -122,7 +122,7 @@ bulk/output/bulk_3/
 
 ---
 
-## **3.1 bulk_1-2: Platform FPKM-based Excel tables**
+## **3.1 bulk_1-2: FPKM-based Excel tables**
 
 Required columns:
 
@@ -185,8 +185,7 @@ Because this repository is associated with **unpublished work**, no data files a
 
 * `bulk/input/`
 * `bulk/output/`
-* All platform Excel DEG tables
-* All in-house DESeq2 CSV tables
+* All Excel DEG tables
 * Any TPM/raw FASTQ dependencies
 
 Only analysis **code** is provided.
