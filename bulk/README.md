@@ -88,7 +88,7 @@ bulk/output/bulk_1-2/
 
 ## **2.2 Whole-Heart Bulk RNA-seq (bulk_3.R)**
 
-This module processes **in-house TPM-based DESeq2 outputs** generated from raw FASTQ files.
+This module processes **TPM-based DESeq2 outputs** generated from raw FASTQ files.
 
 It performs:
 
@@ -141,7 +141,7 @@ expr_col_idx <- c(8, 9)
 
 ---
 
-## **3.2 bulk_3: In-house TPM-based CSV DESeq2 tables**
+## **3.2 bulk_3: TPM-based CSV DESeq2 tables**
 
 Required columns:
 
