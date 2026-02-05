@@ -44,7 +44,7 @@ main/
     ├── utils                 
     │   └── utils_scRNA.R            # Shared bulk enrichment utilities
     │
-    ├── bulk_1-2.R                   # T-cell & DC bulk enrichment
+    ├── bulk_1-2.R                   # in vitro cell (T/DC) bulk enrichment
     ├── bulk_3.R                     # Whole-heart bulk enrichment
     │
     ├── demo_input/                        
@@ -94,18 +94,10 @@ Located under `bulk/`.
 Includes two distinct data sources:
 
 ### **bulk_1–2**  
-(T cell/DC bulk RNA-seq)
-
-- DEGs tables
-- GO/KEGG enrichment  
-- Intersection sets where relevant  
+in vitro T cell/DC bulk RNA-seq
 
 ### **bulk_3**  
-(Whole-heart bulk RNA-seq)
-  
- DEG tables  
-- GO/KEGG enrichment  
-- Trend analysis across contrasts  
+Whole-heart bulk RNA-seq
 
 Detailed documentation is provided in:
 
@@ -123,8 +115,8 @@ Because this repository reflects **unpublished data**, directories intentionally
 
 - `scRNA/plots/`
 - `scRNA/results/`
-- `bulk/input/`
-- `bulk/output/`
+- `bulk/demo_input/`
+- `bulk/demo_output/`
 
 > **To protect unpublished data, all data and result folders are intentionally left empty.  
 > Only code is provided to ensure reproducibility without exposing sensitive information.**
@@ -135,12 +127,13 @@ Because this repository reflects **unpublished data**, directories intentionally
 
 - **R ≥ 4.1**
 - **Seurat ≥ 4.3**
-- **harmony**
-- **DoubletFinder**
-- **clusterProfiler**
-- **org.Mm.eg.db**
-- **writexl**
-- **ggplot2 / dplyr / stringr / patchwork**
+- **Harmony ≥ 1.2.3**
+- **DoubletFinder ≥ 2.0.4**
+- **clusterProfiler ≥ 4.14.6**
+- **scRepertoire ≥ 2.5.0**
+- **tximport ≥ 1.32.0**
+
+- **ggplot2 / dplyr / stringr / patchwork /writexl /org.Mm.eg.db**
 
 Each subfolder README contains additional script-specific requirements.
 
