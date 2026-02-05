@@ -2,14 +2,14 @@
 # bulk_3.R
 # Bulk RNA-seq DEG enrichment (whole-heart bulk)
 #
-# - Input: CSV DEG tables generated from your DESeq2 pipeline
+# - Input: CSV DEG tables generated from the DESeq2 pipeline
 #          Expected columns include:
 #          geneid_symbol, baseMean, log2FoldChange, lfcSE,
 #          stat, pvalue, padj
 #          plus TPM columns: S1...S6, V50, V52, V57, V65
 #
 # - Output: DEG up/down tables, GO/KEGG enrichment,
-#           intersection & trend sets (as in your original script)
+#           intersection & trend sets (as in the original script)
 #
 # - Dataset:
 #   bulk_3: whole-heart bulk RNA-seq (TPM-based DESeq2)
@@ -39,14 +39,14 @@ source(file.path("bulk","utils","utils_bulk.R"))
 
 input_dir  <- file.path("bulk", "input", "bulk_3")
 output_dir <- file.path("bulk", "output", "bulk_3")
-plot_dir   <- file.path(output_dir, "plots")
+plot_dir   <- output_dir
 
 dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(plot_dir, recursive = TRUE, showWarnings = FALSE)
 
-# DEG files (TPM-based, from your own DESeq2 pipeline)
+# DEG files 
 deg_files <- c(
-  "IR_vs_CAR.csv",   # originally 20250524_IR_Car_deseq2Results_2_tpm.csv
+  "IR_vs_CAR.csv",  
   "Vector_vs_CAR.csv",
   "Sham_vs_IR.csv",
   "Sham_vs_Vector.csv"
@@ -146,12 +146,6 @@ for (comp_name in names(DEG_list)) {
 ############################################################
 # 5. Intersections & trend gene sets (as in original script)
 ############################################################
-# Here we follow your logic:
-# - intersection of up DEGs between IR_vs_CAR and Vector_vs_CAR
-# - intersection of up DEGs between Sham_vs_IR and Sham_vs_Vector
-# - same for down DEGs
-# - trend sets: up in (Car comparisons) & down in (Sham comparisons), etc.
-############################################################
 
 # Helper to get symbol vector from stored tables
 get_symbols <- function(df_list_entry) {
@@ -205,7 +199,7 @@ DEG_down_KEGG_list[["Down_ShamvsIR_and_ShamvsVector"]]<- enrich_GO_KEGG_mouse(ge
 ############################################################
 # 6. Trend gene sets (Up→Down and Down→Up)
 ############################################################
-# Example interpretation (you can phrase biologically in manuscript):
+# Example interpretation:
 # - Trend_UpInCAR_DownInSham: genes consistently up in CAR-related
 #   contrasts and down in Sham-related contrasts.
 ############################################################
