@@ -40,7 +40,7 @@ library(dplyr)
 library(stringr)
 library(clustree)
 
-source("utils_scRNA.R")   # ★ 使用统一的 QC / CC scoring / SCT / Harmony / clustering / plots
+source(file.path("scRNA","utils","utils_scRNA.R"))
 
 options(stringsAsFactors = FALSE)
 options(future.globals.maxSize = 10 * 1024^3)
