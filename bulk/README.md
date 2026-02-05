@@ -63,7 +63,7 @@ source(file.path("bulk", "utils_bulk.R"))
 
 ## **2.1 T cell / DC Bulk RNA-seq (bulk_1-2.R)**
 
-This module processes **platform-generated FPKM-based** DEG tables (Excel format). It performs:
+This module processes **FPKM-based** DEG tables (Excel format). It performs:
 
 * Load DEG tables
 * DEG filtering
