@@ -197,34 +197,7 @@ DEG_down_GO_list[["Down_ShamvsIR_and_ShamvsVector"]] <- enrich_GO_KEGG_mouse(gen
 DEG_down_KEGG_list[["Down_ShamvsIR_and_ShamvsVector"]]<- enrich_GO_KEGG_mouse(genes_down_34, ntop)$KEGG
 
 ############################################################
-# 6. Trend gene sets (Up→Down and Down→Up)
-############################################################
-# Example interpretation:
-# - Trend_UpInCAR_DownInSham: genes consistently up in CAR-related
-#   contrasts and down in Sham-related contrasts.
-############################################################
-
-DEG_trend_list       <- list()
-DEG_trend_GO_KEGG    <- list()
-
-# Up in CAR-related (intersection 1&2), Down in Sham-related (intersection 3&4)
-genes_trend_updown <- intersect(genes_up_12, genes_down_34)
-DEG_trend_list[["UpIn_CAR_downIn_Sham"]] <- data.frame(genes = genes_trend_updown)
-
-enrich_updown <- enrich_GO_KEGG_mouse(genes_trend_updown, ntop = ntop)
-DEG_trend_GO_KEGG[["UpIn_CAR_downIn_Sham_GO"]]   <- enrich_updown$GO
-DEG_trend_GO_KEGG[["UpIn_CAR_downIn_Sham_KEGG"]] <- enrich_updown$KEGG
-
-# Down in CAR-related, Up in Sham-related
-genes_trend_downup <- intersect(genes_down_12, genes_up_34)
-DEG_trend_list[["DownIn_CAR_upIn_Sham"]] <- data.frame(genes = genes_trend_downup)
-
-enrich_downup <- enrich_GO_KEGG_mouse(genes_trend_downup, ntop = ntop)
-DEG_trend_GO_KEGG[["DownIn_CAR_upIn_Sham_GO"]]   <- enrich_downup$GO
-DEG_trend_GO_KEGG[["DownIn_CAR_upIn_Sham_KEGG"]] <- enrich_downup$KEGG
-
-############################################################
-# 7. Save results
+# 6. Save results
 ############################################################
 
 # DEG tables (up/down)
@@ -242,29 +215,5 @@ write_xlsx(DEG_up_KEGG_list,
            path = file.path(output_dir, "DEG_up_KEGG_results.xlsx"))
 write_xlsx(DEG_down_KEGG_list,
            path = file.path(output_dir, "DEG_down_KEGG_results.xlsx"))
-
-# Trend sets
-write_xlsx(DEG_trend_list,
-           path = file.path(output_dir, "DEG_trend_gene_sets.xlsx"))
-write_xlsx(DEG_trend_GO_KEGG,
-           path = file.path(output_dir, "DEG_trend_GO_KEGG_results.xlsx"))
-
-# Save R objects if needed for further downstream plotting
-save(DEG_trend_GO_KEGG,
-     file = file.path(output_dir, "DEG_trend_GO_KEGG_list.RData"))
-save(DEG_trend_list,
-     file = file.path(output_dir, "DEG_trend_list.RData"))
-save(DEG_up_list,
-     file = file.path(output_dir, "DEG_up_list.RData"))
-save(DEG_down_list,
-     file = file.path(output_dir, "DEG_down_list.RData"))
-save(DEG_up_GO_list,
-     file = file.path(output_dir, "DEG_up_GO_list.RData"))
-save(DEG_down_GO_list,
-     file = file.path(output_dir, "DEG_down_GO_list.RData"))
-save(DEG_up_KEGG_list,
-     file = file.path(output_dir, "DEG_up_KEGG_list.RData"))
-save(DEG_down_KEGG_list,
-     file = file.path(output_dir, "DEG_down_KEGG_list.RData"))
 
 message("bulk_3 analysis completed. Results in: ", output_dir)
