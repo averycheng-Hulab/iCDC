@@ -18,8 +18,6 @@ scRNA/
 ├── utils/
 │   └── utils_scRNA.R                   # Shared functions for all scRNA workflows
 │
-├── plots/                              # (Empty)
-├── results/                            # (Empty)
 │
 ├── Main/
 │   ├── whole_heart_main.R              # Whole-heart scRNA integration workflow
@@ -34,6 +32,9 @@ scRNA/
 │   ├── cd45_neutrophil_subcluster.R    # Neutrophil subclustering
 │   ├── cd45_b_subcluster.R             # B-cell subclustering
 │   └── cd4_T_TCR_module.R              # TCR clonotype + CD4 subset integration module
+│
+├── ECM_genelist/
+│   └── ECMregulators.csv           # Gene list for ECM regulatory module score calculation
 │
 └── Enrichment/
 ├── enrich_scRNA.R                  # Unified IR vs Sham/DC enrichment (any celltype)
