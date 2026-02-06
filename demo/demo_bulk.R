@@ -1,7 +1,6 @@
 if (!dir.exists("demo") || !dir.exists("bulk")) stop("Please run from repository root.")
 
 suppressPackageStartupMessages({
-  library(readr)
   library(writexl)
   library(dplyr)
   library(clusterProfiler)
