@@ -4,56 +4,50 @@ This repository contains all analysis scripts for both **single-cell RNA-seq (sc
 It is designed for transparent and reproducible analysis, while ensuring strict protection of unpublished data.
 
 ---
-## 📁 Repository Structure
 
-```
-main/
-├── README.md                         # Top-level project documentation
-├── LICENSE                           
+## Repository structure
+
+```text
+.
+├── run_demo.R                     # entry point to run bulk/scRNA demos
+├── README.md                      # top-level documentation (this file)
+├── LICENSE
 ├── CITATION.cff
-├── .gitignore                       
-│
-├── scRNA/                            # Single-cell RNA-seq workflows
-│   ├── README.md                     # scRNA documentation
-│   │
+├── .gitignore
+├── demo/                          # lightweight demo inputs + generated outputs
+│   ├── demo_bulk.R                # bulk demo script (reads demo/bulk_input → writes demo/bulk_output)
+│   ├── demo_scRNA.R               # scRNA demo script (reads demo/scRNA_input → writes demo/scRNA_output)
+│   ├── bulk_input/                # demo DEG CSV inputs (small example files)
+│   ├── bulk_output/               # demo bulk outputs (generated after running)
+│   ├── scRNA_input/               # demo Seurat object(s), e.g., demo_fib.rds (downsampled)
+│   └── scRNA_output/              # demo scRNA outputs (generated after running)
+├── bulk/                          # bulk RNA-seq analysis code
+│   ├── bulk_1-2.R
+│   ├── bulk_3.R
 │   ├── utils/
-│   │   └── utils_scRNA.R             # Shared functions for all scRNA scripts
-│   │
-│   │
-│   ├── Main/
-│   │   ├── whole_heart_main.R        # Whole-heart scRNA integration workflow
-│   │   ├── cd45_main.R               # CD45+ immune compartment analysis
-│   │   └── cd4_T_main.R              # CD4+ T-cell analysis
-│   │
-│   ├── Subcluster/
-│   │   ├── whole_heart_fibroblast.R        # Fibroblast re-clustering
-│   │   ├── whole_heart_fibroblast_ecm.R    # Fibroblast ECM regulator program
-│   │   ├── cd45_MacMonoDc_subcluster.R     # Monocyte / Mac / DC subclustering
-│   │   ├── cd45_tnk_subcluster.R           # T/NK subclustering
-│   │   ├── cd45_neutrophil_subcluster.R    # Neutrophil subclustering
-│   │   ├── cd45_b_subcluster.R             # B-cell subclustering
-│   │   └── cd4_T_TCR_module.R              # CD4 TCR integration / clonotype module
-│   │
-│   └── Enrichment/
-│       ├── enrich_scRNA.R                  # General IR vs Sham/DC enrichment
-│       └── enrich_scRNA_cd4.R              # CD4-specific MI vs iCDC enrichment
-│
-└── bulk/                            # Bulk RNA-seq workflows
-    ├── README.md                    # Bulk RNA-seq documentation
-    │
-    ├── utils                 
-    │   └── utils_scRNA.R            # Shared bulk enrichment utilities
-    │
-    ├── bulk_1-2.R                   # in vitro cell (T/DC) bulk enrichment
-    ├── bulk_3.R                     # Whole-heart bulk enrichment
-    │
-    ├── demo_input/                        
-    └── demo_output/                      
-
-
+│   │   └── utils_bulk.R
+│   ├── demo_input/                # (optional) alternative bulk demo input location
+│   ├── demo_output/               # (optional) alternative bulk demo output location
+│   └── README.md
+└── scRNA/                         # single-cell RNA-seq analysis code
+    ├── utils/
+    │   └── utils_scRNA.R
+    ├── ECM_genelist/
+    │   └── ECMregulators.csv
+    ├── Main/                      # main analysis scripts
+    ├── Subcluster/                # subclustering scripts
+    ├── Enrichment/                # enrichment scripts
+    └── README.md
 ```
+
+**Notes**
+
+* The `demo/*_input/` directories contain **lightweight demo inputs** (small DEG tables and a downsampled Seurat object) so the pipeline can be run end-to-end.
+* The `demo/*_output/` directories are **generated after running** the demos (placeholders may exist before execution).
+* Some directories may include `.gitkeep` files to preserve folder structure in GitHub.
 
 ---
+
 
 #  **Overview of Analyses**
 
@@ -91,8 +85,6 @@ scRNA/README.md
 
 Located under `bulk/`.
 
-Includes two distinct data sources:
-
 ### **bulk_1–2**  
 in vitro T cell/DC bulk RNA-seq
 
@@ -109,17 +101,20 @@ bulk/README.md
 
 ---
 
-#  **Data Availability & Privacy**
+# **Data Availability & Privacy**
 
-Because this repository reflects **unpublished data**, directories intentionally left empty include:
+This repository contains the **analysis code** together with **lightweight demo inputs** under `demo/` to allow reviewers to run the general workflow. The demo materials are **downsampled and de-identified** and are intended for demonstrating the pipeline rather than reproducing the full manuscript figures.
 
-- `scRNA/plots/`
-- `scRNA/results/`
-- `bulk/demo_input/`
-- `bulk/demo_output/`
+To protect unpublished and/or sensitive data and avoid substantial compute resources and time , full-resolution datasets and complete result folders are not distributed in this GitHub repository. In particular, folders such as:
 
-> **To protect unpublished data, all data and result folders are intentionally left empty.  
-> Only code is provided to ensure reproducibility without exposing sensitive information.**
+- `scRNA/plots/` (full-resolution manuscript figures)
+- `scRNA/results/` (full analysis outputs)
+- `bulk/demo_output/` (full outputs; demo outputs are generated under `demo/bulk_output/`)
+- `scRNA_output/` (full outputs; demo outputs are generated under `demo/scRNA_output/`)
+
+may be empty prior to running the demos.
+
+**Full data access information is provided in the manuscript “Data availability” section.**
 
 ---
 
@@ -132,6 +127,8 @@ Because this repository reflects **unpublished data**, directories intentionally
 - **clusterProfiler ≥ 4.14.6**
 - **scRepertoire ≥ 2.5.0**
 - **tximport ≥ 1.32.0**
+- **tximport ≥ 1.32.0**
+- **SCP ≥ 0.5.6**
 
 - **ggplot2 / dplyr / stringr / patchwork /writexl /org.Mm.eg.db**
 
