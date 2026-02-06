@@ -22,10 +22,7 @@ cat(" Working directory: ", getwd(), "\n", sep = "")
 cat("====================================\n")
 
 
-if (!dir.exists("bulk") || !dir.exists("scRNA") || !dir.exists("demo")) {
-  stop("Please run this script from the repository root directory (must contain 'bulk/', 'scRNA/', and 'demo/').")
-}
-
+if (!dir.exists("demo")) stop("Missing demo/; please run from repository root.")
 
 dir.create("demo_output", showWarnings = FALSE)
 run_demo_script <- function(script_path, label) {
