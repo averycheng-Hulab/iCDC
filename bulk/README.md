@@ -57,7 +57,9 @@ source(file.path("bulk","utils","utils_bulk.R"))
 
 ## **2.1 T cell / DC Bulk RNA-seq (bulk_1-2.R)**
 
-This module processes **FPKM-based** DEG tables (Excel format). It performs:
+This module processes  **DESeq2 outputs** . 
+
+It performs:
 
 * Load DEG tables
 * DEG filtering
@@ -72,17 +74,11 @@ This module processes **FPKM-based** DEG tables (Excel format). It performs:
 
 The FPKM filtering (expression cutoff) is **only used in bulk_1-2**, and this is explained in this README.
 
-Output directory:
-
-```
-bulk/output/bulk_1-2/
-```
-
 ---
 
 ## **2.2 Whole-Heart Bulk RNA-seq (bulk_3.R)**
 
-This module processes **TPM-based DESeq2 outputs** generated from raw FASTQ files.
+This module processes **DESeq2 outputs**.
 
 It performs:
 
@@ -104,11 +100,7 @@ It performs:
   * Trend gene sets + enrichment tables
   * RData files (for further downstream figures)
 
-Output directory:
 
-```
-bulk/output/bulk_3/
-```
 
 ---
 
