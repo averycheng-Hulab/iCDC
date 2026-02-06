@@ -16,10 +16,6 @@
 #   bulk_1: T cell bulk RNA-seq
 #   bulk_2: DC bulk RNA-seq
 #
-# NOTE:
-#   Expression cutoff (exp_cutoff) is used only here because the
-#   platform-derived DEG tables are FPKM-based and may contain
-#   very low-expression genes. See README_bulk.md for details.
 ############################################################
 
 suppressPackageStartupMessages({
