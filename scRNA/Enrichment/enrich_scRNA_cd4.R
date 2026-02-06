@@ -5,18 +5,6 @@
 # - Contrast: MI vs iCDC (Treatment)
 # - Target: one CD4 T-cell subset (e.g. T-Reg)
 #
-# - Output files (using cd4_subset name, e.g., "T-Reg"):
-#   GoKegg_cd4/
-#      T-Reg_feature_up.xlsx
-#      T-Reg_feature_down.xlsx
-#      T-Reg_GO_up.xlsx
-#      T-Reg_GO_down.xlsx
-#      T-Reg_KEGG_up.xlsx
-#      T-Reg_KEGG_down.xlsx
-#      T-Reg_GO_Up_bubble.pdf
-#      T-Reg_GO_Down_bubble.pdf
-#      T-Reg_KEGG_Up_bubble.pdf
-#      T-Reg_KEGG_Down_bubble.pdf
 ###############################################################################
 
 ## ---------------------------------------------------------------------------
