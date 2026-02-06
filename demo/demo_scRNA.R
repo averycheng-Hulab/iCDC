@@ -3,7 +3,6 @@ if (!dir.exists("demo") || !dir.exists("scRNA")) stop("Please run from repositor
 suppressPackageStartupMessages({
   library(Seurat)
   library(SCP)
-  library(readr)
   library(writexl)
   library(dplyr)
   library(stringr)
