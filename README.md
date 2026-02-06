@@ -61,12 +61,13 @@ Rscript run_demo.R --mode all
 > Note: The demo is intended to validate the pipeline and generate representative outputs.
 > It is not designed to reproduce all manuscript figures due to compute/time constraints.
 
-````
----
+
+
 ---
 ## Repository structure
+---
 
-```text
+```
 .
 ├── run_demo.R                     # entry point to run bulk/scRNA demos
 ├── README.md                      # top-level documentation (this file)
