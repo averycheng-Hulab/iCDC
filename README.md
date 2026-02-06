@@ -61,6 +61,8 @@ Rscript run_demo.R --mode all
 
 ```
 .
+├── install_packages_demo.R        # install packaged for demo
+├── install_packages.R             # install packaged for full analysis
 ├── run_demo.R                     # entry point to run bulk/scRNA demos
 ├── README.md                      # top-level documentation (this file)
 ├── LICENSE
