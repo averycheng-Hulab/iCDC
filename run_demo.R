@@ -56,6 +56,7 @@ if (mode %in% c("scrna", "all")) {
   run_demo_script(scrna_demo_path, "scRNA")
 }
 
-end_time <- Sys.time()
+cat("====================================\n")
 cat("All requested demos completed.\n")
 cat("Check outputs under 'demo/bulk_output' or 'demo_output/'.\n")
+cat("====================================\n")
