@@ -80,8 +80,6 @@ Rscript run_demo.R --mode all
 │   ├── bulk_3.R
 │   ├── utils/
 │   │   └── utils_bulk.R
-│   ├── demo_input/                # (optional) alternative bulk demo input location
-│   ├── demo_output/               # (optional) alternative bulk demo output location
 │   └── README.md
 └── scRNA/                         # single-cell RNA-seq analysis code
     ├── utils/
