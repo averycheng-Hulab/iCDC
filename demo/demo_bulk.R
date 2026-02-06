@@ -151,4 +151,4 @@ write_xlsx(DEG_up_KEGG_list,
 write_xlsx(DEG_down_KEGG_list,
            path = file.path(output_dir, "DEG_down_KEGG_results.xlsx"))
 
-message("bulk_3 analysis completed. Results in: ", output_dir)
+message("demo_bulk analysis completed. Results in: ", output_dir)
