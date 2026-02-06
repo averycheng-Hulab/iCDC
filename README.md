@@ -12,22 +12,12 @@ Please run demos **from the repository root**.
 
 ### 1) Install dependencies
 
-Option A (recommended): run the helper installer script
+run the helper installer script
 ```bash
-Rscript install_packages.R
+Rscript install_packages_demo.R
+#Rscript install_packages.R
 ````
-
-Option B: install manually in R
-
-```r
-install.packages(c("dplyr","readr","writexl","ggplot2","stringr","optparse"))
-install.packages("Seurat")  # or the version used in this study
-install.packages("remotes")
-# Bioconductor packages
-if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-BiocManager::install(c("clusterProfiler","org.Mm.eg.db"))
-# If SCP is required and not on CRAN/Bioc:
-# remotes::install_github(".../SCP")  # fill in if applicable
+s::install_github(".../SCP")  # fill in if applicable
 ```
 
 ### 2) Run the demo
