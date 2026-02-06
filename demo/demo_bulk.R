@@ -1,6 +1,4 @@
-if (!dir.exists("demo") || !dir.exists("bulk") || !dir.exists("scRNA")) {
-  stop("Please run from repository root.")
-}
+if (!dir.exists("demo") || !dir.exists("bulk")) stop("Please run from repository root.")
 
 suppressPackageStartupMessages({
   library(readr)
