@@ -36,7 +36,6 @@ run_demo_script <- function(script_path, label) {
 
   demo_env <- new.env(parent = globalenv())
 
-  # Helpful info for scripts (optional)
   demo_env$DEMO_ROOT <- file.path(getwd(), "demo")
   demo_env$REPO_ROOT <- getwd()
 
@@ -58,8 +57,5 @@ if (mode %in% c("scrna", "all")) {
 }
 
 end_time <- Sys.time()
-cat("\n====================================\n")
 cat("All requested demos completed.\n")
-cat("Total time (sec): ", round(as.numeric(difftime(end_time, start_time, units = "secs")), 1), "\n", sep = "")
-cat("Check outputs under 'demo/' (e.g., demo/bulk_output, demo/scRNA_output) or 'demo_output/'.\n")
-cat("====================================\n")
+cat("Check outputs under 'demo/bulk_output' or 'demo_output/'.\n")
