@@ -177,7 +177,6 @@ may be empty prior to running the demos.
 - **clusterProfiler ≥ 4.14.6**
 - **scRepertoire ≥ 2.5.0**
 - **tximport ≥ 1.32.0**
-- **tximport ≥ 1.32.0**
 - **SCP ≥ 0.5.6**
 
 - **ggplot2 / dplyr / stringr / patchwork /writexl /org.Mm.eg.db**
