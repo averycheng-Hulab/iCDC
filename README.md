@@ -3,6 +3,65 @@
 This repository contains all analysis scripts for both **single-cell RNA-seq (scRNA-seq)** and **bulk RNA-seq** analysis pipelines used in this project.  
 It is designed for transparent and reproducible analysis, while ensuring strict protection of unpublished data.
 
+
+---
+
+## Quick start (demo)
+
+Please run demos **from the repository root**.
+
+### 1) Install dependencies
+
+Option A (recommended): run the helper installer script
+```bash
+Rscript install_packages.R
+````
+
+Option B: install manually in R
+
+```r
+install.packages(c("dplyr","readr","writexl","ggplot2","stringr","optparse"))
+install.packages("Seurat")  # or the version used in this study
+install.packages("remotes")
+# Bioconductor packages
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install(c("clusterProfiler","org.Mm.eg.db"))
+# If SCP is required and not on CRAN/Bioc:
+# remotes::install_github(".../SCP")  # fill in if applicable
+```
+
+### 2) Run the demo
+
+Bulk demo:
+
+```bash
+Rscript run_demo.R --mode bulk
+```
+
+scRNA demo:
+
+```bash
+Rscript run_demo.R --mode scrna
+```
+
+Run both:
+
+```bash
+Rscript run_demo.R --mode all
+```
+
+### 3) Inputs and outputs
+
+* **Bulk demo inputs:** `demo/bulk_input/`
+  **Bulk demo outputs:** `demo/bulk_output/`
+
+* **scRNA demo inputs:** `demo/scRNA_input/` (e.g., `seurat_demo.rds`)
+  **scRNA demo outputs:** `demo/scRNA_output/`
+
+> Note: The demo is intended to validate the pipeline and generate representative outputs.
+> It is not designed to reproduce all manuscript figures due to compute/time constraints.
+
+````
 ---
 
 ## Repository structure
