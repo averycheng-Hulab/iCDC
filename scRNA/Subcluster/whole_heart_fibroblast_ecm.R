@@ -70,7 +70,7 @@ if ("SCT" %in% names(seuobj_fibro@assays)) {
 
 
 ## ---------------------------------------------------------------------------
-## 2. Load ECM Regulator list only
+## 2. Load ECM Regulator list
 ## ---------------------------------------------------------------------------
 
 reg_file <- file.path("ECM_genelist", "ECMregulators.csv")
