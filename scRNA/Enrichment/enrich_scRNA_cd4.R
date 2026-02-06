@@ -11,32 +11,17 @@
 ## 0. Packages, utils and options
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c(
-  "Seurat",
-  "dplyr",
-  "ggplot2",
-  "clusterProfiler",
-  "DOSE",
-  "org.Mm.eg.db",
-  "writexl"
-)
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(dplyr)
+  library(ggplot2)
+  library(clusterProfiler)
+  library(DOSE)
+  library(org.Mm.eg.db)
+  library(writexl)
+})
 
-missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
-if (length(missing_pkgs) > 0) {
-  stop(
-    "Missing packages: ",
-    paste(missing_pkgs, collapse = ", "),
-    "\nPlease install them before running."
-  )
-}
 
-library(Seurat)
-library(dplyr)
-library(ggplot2)
-library(clusterProfiler)
-library(DOSE)
-library(org.Mm.eg.db)
-library(writexl)
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
