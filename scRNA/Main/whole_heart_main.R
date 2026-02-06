@@ -16,26 +16,21 @@
 ## 0. Load packages & utils
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c(
-  "Seurat","DoubletFinder","harmony","ggplot2","patchwork",
-  "dplyr","stringr","clustree","SCP","writexl"
-)
-missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
-if (length(missing_pkgs) > 0) {
-  stop("Missing packages: ", paste(missing_pkgs, collapse=", "))
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(DoubletFinder)
+  library(harmony)
+  library(ggplot2)
+  library(patchwork)
+  library(dplyr)
+  library(stringr)
+  library(clustree)
+  library(scater)
+  library(SCP)
+  library(writexl)
 })
 
-library(Seurat)
-library(DoubletFinder)
-library(harmony)
-library(ggplot2)
-library(patchwork)
-library(dplyr)
-library(stringr)
-library(clustree)
-library(scater)
-library(SCP)
-library(writexl)
+
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
