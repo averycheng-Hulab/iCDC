@@ -17,18 +17,12 @@ All analyses follow a unified GO/KEGG enrichment framework and use shared utilit
 bulk/
 ├── README.md                     # This file
 │
-├── utils_bulk.R                       # Shared enrichment + plotting utilities
-│
-├── bulk_1-2.R                         # in vitro cell (T/DC) bulk enrichment
-├── bulk_3.R                           # Whole-heart bulk enrichment
-│
-├── demo_input/                             
-│   ├── bulk_1-2/                      #
-│   └── bulk_3/                        #
-│
-└── demo_output/                           
-├── bulk_1-2/                      #
-└── bulk_3/                        # 
+├── utils/
+│   └── utils_bulk.R              # Shared enrichment + plotting utilities
+│                     
+├── bulk_1-2.R                    # in vitro cell (T/DC) bulk enrichment
+└── bulk_3.R                      # Whole-heart bulk enrichment
+
 
 ````
 
@@ -174,40 +168,4 @@ bulk/output/bulk_1-2/
 bulk/output/bulk_3/
 ```
 ---
-
-# **5. Data Availability and Privacy**
-
-Because this repository is associated with **unpublished work**, only demo data files are included:
-
-* `bulk/input/`
-* `bulk/output/`
-* All Excel DEG tables
-* Any TPM/raw FASTQ dependencies
-
-Only analysis **code** is provided.
-
-> **To protect unpublished data, all data and result folders are deposited with demo data.
-> Only code is provided to ensure reproducibility without exposing sensitive information.**
-
----
-
-# **6. Software Requirements**
-
-* R ≥ 4.1
-* clusterProfiler
-* org.Mm.eg.db
-* enrichplot
-* dplyr
-* ggplot2
-* readxl / writexl
-
----
-
-# **7. Maintainer: Guo Cheng**
-
-Department of Cardiology，The Second Affiliated Hospital, School of Medicine, Zhejiang University
-
-Research Center for Life Science and Human Health, Binjiang Institute of Zhejiang University
-
-
 
