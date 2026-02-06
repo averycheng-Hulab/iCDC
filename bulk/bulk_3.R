@@ -14,12 +14,6 @@
 # - Dataset:
 #   bulk_3: whole-heart bulk RNA-seq (TPM-based DESeq2)
 #
-# NOTE:
-#   Here we do NOT use an expression (TPM) cutoff, because:
-#   - DESeq2 starts from raw counts;
-#   - The DEG tables are already filtered at the differential
-#     expression step (p-value / FDR thresholds).
-#   This rationale is described in README_bulk.md.
 ############################################################
 
 suppressPackageStartupMessages({
