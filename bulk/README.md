@@ -161,11 +161,5 @@ Each bulk module produces:
 * Trend gene sets (bulk_3)
 * Example plots for upregulated GO/KEGG
 
-These are saved into the corresponding output folders:
-
-```
-bulk/output/bulk_1-2/
-bulk/output/bulk_3/
-```
 ---
 
