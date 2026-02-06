@@ -22,7 +22,7 @@
 
 required_pkgs <- c(
   "Seurat","DoubletFinder","harmony","ggplot2","patchwork",
-  "dplyr","stringr","clustree","scater","SCP","writexl"
+  "dplyr","stringr","clustree","SCP","writexl"
 )
 missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
 if (length(missing_pkgs) > 0) {
