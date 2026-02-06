@@ -107,10 +107,8 @@ This repository contains the **analysis code** together with **lightweight demo 
 
 To protect unpublished and/or sensitive data and avoid substantial compute resources and time , full-resolution datasets and complete result folders are not distributed in this GitHub repository. In particular, folders such as:
 
-- `scRNA/plots/` (full-resolution manuscript figures)
-- `scRNA/results/` (full analysis outputs)
-- `bulk/demo_output/` (full outputs; demo outputs are generated under `demo/bulk_output/`)
-- `scRNA_output/` (full outputs; demo outputs are generated under `demo/scRNA_output/`)
+- `bulk/demo_output/` (demo outputs are generated under here)
+- `scRNA_output/` ( demo outputs are generated under here)
 
 may be empty prior to running the demos.
 
