@@ -101,7 +101,7 @@ demo_fib <- AddModuleScore(
   name     = "ECM_Regulator"
 )
 
-# AddModuleScore names new column like 'ECM_Regulator1'
+# AddModuleScore names new column
 new_col <- tail(colnames(demo_fib@meta.data), 1)
 colnames(demo_fib@meta.data)[colnames(demo_fib@meta.data) == new_col] <- "ECM_Regulator_Score"
 
@@ -129,7 +129,7 @@ save_plot(
 )
 
 
-# UMAP visualization1
+# UMAP visualization2
 
 save_plot(
   FeatureStatPlot(
