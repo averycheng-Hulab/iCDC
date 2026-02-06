@@ -10,35 +10,23 @@
 #   - SCTransform → PCA → Harmony integration
 #   - Clustering + UMAP/TSNE
 #   - Manual annotation (CD4 T-cell subsets)
-#
-# Outputs:
-#   r_objects/seuobj_cd4_final.Rds
-#   cd4_markers_by_cluster.csv
-#   cd4_markers_by_CellType1.csv
 ###############################################################################
 
 ## ---------------------------------------------------------------------------
 ## 0. Load packages and utilities
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c(
-  "Seurat","DoubletFinder","harmony",
-  "ggplot2","patchwork","dplyr","stringr","clustree"
-)
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(DoubletFinder)
+  library(harmony)
+  library(ggplot2)
+  library(patchwork)
+  library(dplyr)
+  library(stringr)
+  library(clustree)
+})
 
-missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
-if (length(missing_pkgs) > 0) {
-  stop("Missing packages: ", paste(missing_pkgs, collapse=", "))
-}
-
-library(Seurat)
-library(DoubletFinder)
-library(harmony)
-library(ggplot2)
-library(patchwork)
-library(dplyr)
-library(stringr)
-library(clustree)
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
