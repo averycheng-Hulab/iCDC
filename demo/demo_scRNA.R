@@ -1,7 +1,4 @@
-if (!dir.exists("demo") || !dir.exists("bulk") || !dir.exists("scRNA")) {
-  stop("Please run from repository root.")
-}
-
+if (!dir.exists("demo") || !dir.exists("scRNA")) stop("Please run from repository root.")
 
 suppressPackageStartupMessages({
   library(Seurat)
@@ -154,12 +151,9 @@ save_plot(
 )
 
 
-
-###############################################################################
 ## 4. GO/KEGG analysis
 
 get_two_comparisons <- function(obj, celltype, celltype_col = "CellType1") {
-  # 手动筛选细胞
   keep <- obj[[celltype_col]][, 1] == celltype
   obj_ct <- obj[, keep]
 
