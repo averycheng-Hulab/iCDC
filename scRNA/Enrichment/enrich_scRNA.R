@@ -39,33 +39,24 @@ options(future.globals.maxSize = 10 * 1024^3)
 # 1. Differential Expression: IR vs Sham, IR vs DC
 ###############################################################################
 
-get_two_comparisons <- function(obj, celltype) {
-  Idents(obj) <- "Treatment"
+get_two_comparisons <- function(obj, celltype, celltype_col = "CellType1") {
+  # 手动筛选细胞
+  keep <- obj[[celltype_col]][, 1] == celltype
+  obj_ct <- obj[, keep]
 
-  deg1 <- FindMarkers(
-    obj,
-    ident.1         = "IR",
-    ident.2         = "Sham",
-    assay           = "SCT",
-    subset.ident    = celltype,
-    logfc.threshold = 0.3,
-    min.pct         = 0.5
-  )
+  Idents(obj_ct) <- "Treatment"
+
+  deg1 <- FindMarkers(obj_ct, ident.1="IR", ident.2="Sham",
+                      assay="SCT", logfc.threshold=0.3, min.pct=0.5)
   deg1$gene <- rownames(deg1)
 
-  deg2 <- FindMarkers(
-    obj,
-    ident.1         = "IR",
-    ident.2         = "DC",
-    assay           = "SCT",
-    subset.ident    = celltype,
-    logfc.threshold = 0.3,
-    min.pct         = 0.5
-  )
+  deg2 <- FindMarkers(obj_ct, ident.1="IR", ident.2="DC",
+                      assay="SCT", logfc.threshold=0.3, min.pct=0.5)
   deg2$gene <- rownames(deg2)
 
   list(IR_vs_Sham = deg1, IR_vs_DC = deg2)
 }
+
 
 ###############################################################################
 # 2. Extract shared up/down DEGs
@@ -88,8 +79,7 @@ extract_intersection_deg <- function(deg1, deg2, p_cut = 0.01) {
 # 3. GO / KEGG enrichment wrapper
 ###############################################################################
 
-run_GO_KEGG <- function(gene_vec, top = 100) {
-  gene_vec <- gene_vec[1:min(top, length(gene_vec))]
+run_GO_KEGG <- function(gene_vec) {
   gene_vec <- gene_vec[!is.na(gene_vec)]
 
   if (length(gene_vec) < 1) {
@@ -175,7 +165,7 @@ run_GO_KEGG <- function(gene_vec, top = 100) {
 }
 
 ###############################################################################
-# 4. Bubble plot (same style as cd4 enrichment)
+# 4. Bubble plot
 ###############################################################################
 
 plot_bubble <- function(df, title_text, file_out) {
@@ -204,8 +194,7 @@ plot_bubble <- function(df, title_text, file_out) {
 run_enrich_scRNA <- function(
   obj,
   celltype,
-  outdir = paste0("enrich_", celltype),
-  top = 100
+  outdir = paste0("enrich_", celltype)
 ) {
   dir.create(outdir, showWarnings = FALSE)
 
@@ -215,8 +204,8 @@ run_enrich_scRNA <- function(
     comp$IR_vs_DC
   )
 
-  enrich_up   <- run_GO_KEGG(deg_shared$up,   top = top)
-  enrich_down <- run_GO_KEGG(deg_shared$down, top = top)
+  enrich_up   <- run_GO_KEGG(deg_shared$up)
+  enrich_down <- run_GO_KEGG(deg_shared$down)
 
   # Save DEG tables
   write_xlsx(
@@ -244,28 +233,28 @@ run_enrich_scRNA <- function(
   if (!is.null(enrich_up$GO))
     plot_bubble(
       enrich_up$GO,
-      paste0(celltype, ": GO Up"),
+      paste0(celltype, ": GO Up in I/R"),
       file.path(outdir, "GO_up_bubble.pdf")
     )
 
   if (!is.null(enrich_down$GO))
     plot_bubble(
       enrich_down$GO,
-      paste0(celltype, ": GO Down"),
+      paste0(celltype, ": GO Down in I/R"),
       file.path(outdir, "GO_down_bubble.pdf")
     )
 
   if (!is.null(enrich_up$KEGG))
     plot_bubble(
       enrich_up$KEGG,
-      paste0(celltype, ": KEGG Up"),
+      paste0(celltype, ": KEGG Up in I/R"),
       file.path(outdir, "KEGG_up_bubble.pdf")
     )
 
   if (!is.null(enrich_down$KEGG))
     plot_bubble(
       enrich_down$KEGG,
-      paste0(celltype, ": KEGG Down"),
+      paste0(celltype, ": KEGG Down in I/R"),
       file.path(outdir, "KEGG_down_bubble.pdf")
     )
 
