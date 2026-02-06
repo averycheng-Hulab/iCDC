@@ -41,20 +41,17 @@ logfc_cutoff  <- 1      # |log2FC| > 1
 pvalue_cutoff <- 0.01   # p-value threshold
 ntop          <- 3000
 
-############################################################
-# 2. Load DEG tables
-############################################################
+
+## 1. Load DEG tables
 
 DEG_list <- lapply(deg_paths, function(f) {
   message("Reading: ", f)
   read.csv(f, header = TRUE, stringsAsFactors = FALSE)
 })
-
 names(DEG_list) <- contrast_names
 
-############################################################
-# 3. Storage lists
-############################################################
+
+## 3. Storage lists
 
 DEG_up_list        <- list()
 DEG_down_list      <- list()
@@ -64,9 +61,7 @@ DEG_up_KEGG_list   <- list()
 DEG_down_KEGG_list <- list()
 
 
-############################################################
-# 4. Main loop: filter by log2FC & p-value, enrich
-############################################################
+## 2. Main loop: filter by log2FC & p-value, enrich
 
 for (comp_name in names(DEG_list)) {
   df <- DEG_list[[comp_name]]
@@ -139,63 +134,7 @@ for (comp_name in names(DEG_list)) {
 }
 
 
-############################################################
-# 5. Intersections & trend gene sets (as in original script)
-############################################################
-
-# Helper to get symbol vector from stored tables
-get_symbols <- function(df_list_entry) {
-  if (is.null(df_list_entry) || nrow(df_list_entry) == 0) {
-    return(character(0))
-  }
-  gsub(" ", "", df_list_entry$geneid_symbol)
-}
-
-# Up DEGs intersection: IR_vs_CAR & Vector_vs_CAR
-genes_up_12 <- intersect(
-  get_symbols(DEG_up_list[["IR_vs_CAR"]]),
-  get_symbols(DEG_up_list[["Vector_vs_CAR"]])
-)
-
-# Up DEGs intersection: Sham_vs_IR & Sham_vs_Vector
-genes_up_34 <- intersect(
-  get_symbols(DEG_up_list[["Sham_vs_IR"]]),
-  get_symbols(DEG_up_list[["Sham_vs_Vector"]])
-)
-
-# Down DEGs intersection: IR_vs_CAR & Vector_vs_CAR
-genes_down_12 <- intersect(
-  get_symbols(DEG_down_list[["IR_vs_CAR"]]),
-  get_symbols(DEG_down_list[["Vector_vs_CAR"]])
-)
-
-# Down DEGs intersection: Sham_vs_IR & Sham_vs_Vector
-genes_down_34 <- intersect(
-  get_symbols(DEG_down_list[["Sham_vs_IR"]]),
-  get_symbols(DEG_down_list[["Sham_vs_Vector"]])
-)
-
-# Store intersection gene tables (for clarity)
-DEG_up_list[["Up_IRvsCAR_and_VectorvsCAR"]]         <- data.frame(genes = genes_up_12)
-DEG_up_list[["Up_ShamvsIR_and_ShamvsVector"]]       <- data.frame(genes = genes_up_34)
-DEG_down_list[["Down_IRvsCAR_and_VectorvsCAR"]]     <- data.frame(genes = genes_down_12)
-DEG_down_list[["Down_ShamvsIR_and_ShamvsVector"]]   <- data.frame(genes = genes_down_34)
-
-# Enrich these intersection sets
-DEG_up_GO_list[["Up_IRvsCAR_and_VectorvsCAR"]]       <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$GO
-DEG_up_KEGG_list[["Up_IRvsCAR_and_VectorvsCAR"]]     <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$KEGG
-DEG_up_GO_list[["Up_ShamvsIR_and_ShamvsVector"]]     <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$GO
-DEG_up_KEGG_list[["Up_ShamvsIR_and_ShamvsVector"]]   <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$KEGG
-
-DEG_down_GO_list[["Down_IRvsCAR_and_VectorvsCAR"]]   <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$GO
-DEG_down_KEGG_list[["Down_IRvsCAR_and_VectorvsCAR"]] <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$KEGG
-DEG_down_GO_list[["Down_ShamvsIR_and_ShamvsVector"]] <- enrich_GO_KEGG_mouse(genes_down_34, ntop)$GO
-DEG_down_KEGG_list[["Down_ShamvsIR_and_ShamvsVector"]]<- enrich_GO_KEGG_mouse(genes_down_34, ntop)$KEGG
-
-############################################################
-# 6. Save results
-############################################################
-
+## 3. Save results
 # DEG tables (up/down)
 write_xlsx(DEG_up_list,
            path = file.path(output_dir, "DEG_up_tables.xlsx"))
