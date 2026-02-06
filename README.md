@@ -10,17 +10,19 @@ It is designed for transparent and reproducible analysis, while ensuring strict 
 
 Please run demos **from the repository root**.
 
-### 1) Install dependencies
+### 1) Install dependencies (demo only)
 
-run the helper installer script
+For running the **lightweight demos** in `demo/`, it is sufficient to install the demo dependencies:
+
 ```bash
 Rscript install_packages_demo.R
-#Rscript install_packages.R
 ````
-s::install_github(".../SCP")  # fill in if applicable
-```
+
+> `install_packages.R` installs additional packages used in the **full analysis** (not required for the demo).
+> If you only want to run the demo, you can skip `install_packages.R`.
 
 ### 2) Run the demo
+
 
 Bulk demo:
 
