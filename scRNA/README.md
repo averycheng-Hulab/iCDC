@@ -124,7 +124,7 @@ Located under `scRNA/Subcluster/`.
 
 Computes:
 
-* **ECM_Regulator_Score only** (no collagen/glycoprotein/proteoglycan modules)
+* **ECM_Regulator_Score** 
 
 Outputs:
 
@@ -157,7 +157,6 @@ B-cell subclustering:
 
 * Re-integrate
 * Annotate into B-Naive / B-Act / Memory / Plasma
-* Save marker tables
 
 ---
 
@@ -218,37 +217,5 @@ CD4-specific enrichment:
 * Organizes output into CD4-specific folder structure
 
 ---
-
-# **5. Data Availability and Privacy**
-
-Because this repository contains **unpublished data**, all data-related directories are intentionally empty:
-
-* `scRNA/plots/`
-* `scRNA/results/`
-* `bulk/input/`
-* `bulk/output/`
-* All `.Rds` objects referenced by scripts
-
-Only analysis **scripts** are included.
-
-> **To protect unpublished data, all data and result folders are intentionally left empty.
-> Only code is provided to ensure reproducibility without exposing sensitive information.**
-
----
-
-# **6. Software Requirements**
-
-* R ≥ 4.1
-* Seurat ≥ 4.3
-* harmony
-* DoubletFinder
-* clusterProfiler
-* org.Mm.eg.db
-* writexl
-* ggplot2 / dplyr / patchwork / stringr
-
----
-
-# **7. Maintainer: Guo Cheng**
 
 
