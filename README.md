@@ -62,7 +62,7 @@ This repository is a **collection of analysis scripts** (not a compiled software
 To run the demos and/or reuse the analysis pipeline, you need:
 
 - **R** (version to be specified by the user; see "Record your environment" below)
-- Operating system: Linux / macOS / Windows (the code is OS-agnostic; please state what you tested)
+- Operating system: Linux / macOS / Windows
 - Internet access is required for **first-time package installation** (CRAN/Bioconductor/GitHub)
 
 ### Dependencies (demo)
