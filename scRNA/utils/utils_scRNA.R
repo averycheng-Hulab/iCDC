@@ -21,6 +21,7 @@
 suppressPackageStartupMessages({
   library(Seurat)
   library(harmony)
+  library(DoubleFinder)
   library(dplyr)
   library(ggplot2)
 })
