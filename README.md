@@ -97,11 +97,11 @@ Installed by `install_packages.R` (superset of demo):
 ├── CITATION.cff
 ├── .gitignore
 ├── demo/                          # lightweight demo inputs + generated outputs
-│   ├── demo_bulk.R                # bulk demo script (reads demo/bulk_input → writes demo/bulk_output)
-│   ├── demo_scRNA.R               # scRNA demo script (reads demo/scRNA_input → writes demo/scRNA_output)
-│   ├── bulk_input/                # demo DEG CSV inputs (small example files)
+│   ├── demo_bulk.R                # bulk demo script
+│   ├── demo_scRNA.R               # scRNA demo script
+│   ├── bulk_input/                # demo DEG CSV inputs
 │   ├── bulk_output/               # demo bulk outputs (generated after running)
-│   ├── scRNA_input/               # demo Seurat object(s), e.g., demo_fib.rds (downsampled)
+│   ├── scRNA_input/               # demo Seurat object
 │   └── scRNA_output/              # demo scRNA outputs (generated after running)
 ├── bulk/                          # bulk RNA-seq analysis code
 │   ├── bulk_1-2.R
@@ -114,9 +114,9 @@ Installed by `install_packages.R` (superset of demo):
     │   └── utils_scRNA.R
     ├── ECM_genelist/
     │   └── ECMregulators.csv
-    ├── Main/                      # main analysis scripts
-    ├── Subcluster/                # subclustering scripts
-    ├── Enrichment/                # enrichment scripts
+    ├── Main/                      
+    ├── Subcluster/                
+    ├── Enrichment/                
     └── README.md
 ```
 
@@ -203,7 +203,7 @@ may be empty prior to running the demos.
 - **tximport ≥ 1.32.0**
 - **SCP ≥ 0.5.6**
 
-- **ggplot2 / dplyr / stringr / patchwork /writexl /org.Mm.eg.db**
+- **ggplot2 / dplyr / stringr / patchwork /writexl /enrichplot/ org.Mm.eg.db**
 
 Each subfolder README contains additional script-specific requirements.
 
