@@ -28,7 +28,7 @@ deg_files <- c(
 )
 
 
-contrast_names <- c("IR_vs_CAR", "Vector_vs_CAR", "Sham_vs_IR", "Sham_vs_Vector")
+contrast_names <- c("CAR_vs_IR", "CAR_vs_Vector", "IR_vs_Sham", "Vector_vs_Sham")
 
 deg_paths <- file.path(input_dir, deg_files)
 names(deg_paths) <- contrast_names
