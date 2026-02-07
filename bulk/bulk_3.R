@@ -149,46 +149,46 @@ get_symbols <- function(df_list_entry) {
   gsub(" ", "", df_list_entry$geneid_symbol)
 }
 
-# Up DEGs intersection: IR_vs_CAR & Vector_vs_CAR
+# Up DEGs intersection: CAR_vs_IR & CAR_vs_Vector
 genes_up_12 <- intersect(
-  get_symbols(DEG_up_list[["IR_vs_CAR"]]),
-  get_symbols(DEG_up_list[["Vector_vs_CAR"]])
+  get_symbols(DEG_up_list[["CAR_vs_IR"]]),
+  get_symbols(DEG_up_list[["CAR_vs_Vector"]])
 )
 
-# Up DEGs intersection: Sham_vs_IR & Sham_vs_Vector
+# Up DEGs intersection: IR_vs_Sham & Vector_vs_Sham
 genes_up_34 <- intersect(
-  get_symbols(DEG_up_list[["Sham_vs_IR"]]),
-  get_symbols(DEG_up_list[["Sham_vs_Vector"]])
+  get_symbols(DEG_up_list[["IR_vs_Sham"]]),
+  get_symbols(DEG_up_list[["Vector_vs_Sham"]])
 )
 
-# Down DEGs intersection: IR_vs_CAR & Vector_vs_CAR
+# Down DEGs intersection: CAR_vs_IR & CAR_vs_Vector
 genes_down_12 <- intersect(
-  get_symbols(DEG_down_list[["IR_vs_CAR"]]),
-  get_symbols(DEG_down_list[["Vector_vs_CAR"]])
+  get_symbols(DEG_down_list[["CAR_vs_IR"]]),
+  get_symbols(DEG_down_list[["CAR_vs_Vector"]])
 )
 
-# Down DEGs intersection: Sham_vs_IR & Sham_vs_Vector
+# Down DEGs intersection: IR_vs_Sham & Vector_vs_Sham
 genes_down_34 <- intersect(
-  get_symbols(DEG_down_list[["Sham_vs_IR"]]),
-  get_symbols(DEG_down_list[["Sham_vs_Vector"]])
+  get_symbols(DEG_down_list[["IR_vs_Sham"]]),
+  get_symbols(DEG_down_list[["Vector_vs_Sham"]])
 )
 
 # Store intersection gene tables (for clarity)
-DEG_up_list[["Up_IRvsCAR_and_VectorvsCAR"]]         <- data.frame(genes = genes_up_12)
-DEG_up_list[["Up_ShamvsIR_and_ShamvsVector"]]       <- data.frame(genes = genes_up_34)
-DEG_down_list[["Down_IRvsCAR_and_VectorvsCAR"]]     <- data.frame(genes = genes_down_12)
-DEG_down_list[["Down_ShamvsIR_and_ShamvsVector"]]   <- data.frame(genes = genes_down_34)
+DEG_up_list[["Up_CARvsIR_and_CARvsVector"]]         <- data.frame(genes = genes_up_12)
+DEG_up_list[["Up_IRvsSham_and_VectorvsSham"]]       <- data.frame(genes = genes_up_34)
+DEG_down_list[["Down_CARvsIR_and_CARvsVector"]]     <- data.frame(genes = genes_down_12)
+DEG_down_list[["Down_IRvsSham_and_VectorvsSham"]]   <- data.frame(genes = genes_down_34)
 
 # Enrich these intersection sets
-DEG_up_GO_list[["Up_IRvsCAR_and_VectorvsCAR"]]       <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$GO
-DEG_up_KEGG_list[["Up_IRvsCAR_and_VectorvsCAR"]]     <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$KEGG
-DEG_up_GO_list[["Up_ShamvsIR_and_ShamvsVector"]]     <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$GO
-DEG_up_KEGG_list[["Up_ShamvsIR_and_ShamvsVector"]]   <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$KEGG
+DEG_up_GO_list[["Up_CARvsIR_and_CARvsVector"]]       <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$GO
+DEG_up_KEGG_list[["Up_CARvsIR_and_CARvsVector"]]     <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$KEGG
+DEG_up_GO_list[["Up_IRvsSham_and_VectorvsSham"]]     <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$GO
+DEG_up_KEGG_list[["Up_IRvsSham_and_VectorvsSham"]]   <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$KEGG
 
-DEG_down_GO_list[["Down_IRvsCAR_and_VectorvsCAR"]]   <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$GO
-DEG_down_KEGG_list[["Down_IRvsCAR_and_VectorvsCAR"]] <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$KEGG
-DEG_down_GO_list[["Down_ShamvsIR_and_ShamvsVector"]] <- enrich_GO_KEGG_mouse(genes_down_34, ntop)$GO
-DEG_down_KEGG_list[["Down_ShamvsIR_and_ShamvsVector"]]<- enrich_GO_KEGG_mouse(genes_down_34, ntop)$KEGG
+DEG_down_GO_list[["Down_CARvsIR_and_CARvsVector"]]   <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$GO
+DEG_down_KEGG_list[["Down_CARvsIR_and_CARvsVector"]] <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$KEGG
+DEG_down_GO_list[["Down_IRvsSham_and_VectorvsSham"]] <- enrich_GO_KEGG_mouse(genes_down_34, ntop)$GO
+DEG_down_KEGG_list[["Down_IRvsSham_and_VectorvsSham"]]<- enrich_GO_KEGG_mouse(genes_down_34, ntop)$KEGG
 
 ############################################################
 # 6. Save results
