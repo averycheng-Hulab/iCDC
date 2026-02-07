@@ -54,6 +54,34 @@ Rscript run_demo.R --mode all
 > It is not designed to reproduce all manuscript figures due to compute/time constraints.
 
 
+---
+
+## System requirements
+
+This repository is a **collection of analysis scripts** (not a compiled software package).
+To run the demos and/or reuse the analysis pipeline, you need:
+
+- **R** (version to be specified by the user; see "Record your environment" below)
+- Operating system: Linux / macOS / Windows (the code is OS-agnostic; please state what you tested)
+- Internet access is required for **first-time package installation** (CRAN/Bioconductor/GitHub)
+
+### Dependencies (demo)
+
+Installed by `install_packages_demo.R`:
+
+- CRAN: `Seurat`, `ggplot2`, `dplyr`, `stringr`, `writexl`
+- Bioconductor: `clusterProfiler`, `org.Mm.eg.db`
+- GitHub: `SCP` (`zhanghao-njmu/SCP`)
+
+### Dependencies (full analysis)
+
+Installed by `install_packages.R` (superset of demo):
+
+- CRAN: `Seurat`, `harmony`, `ggplot2`, `patchwork`, `dplyr`, `stringr`, `clustree`, `writexl`
+- Bioconductor: `clusterProfiler`, `org.Mm.eg.db`, `scRepertoire`, `enrichplot`
+- GitHub: `DoubletFinder` (`chris-mcginnis-ucsf/DoubletFinder`), `SCP` (`zhanghao-njmu/SCP`)
+
+---
 
 ---
 ## Repository structure
