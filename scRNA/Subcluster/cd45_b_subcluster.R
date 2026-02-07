@@ -12,28 +12,19 @@
 #   3) SCTransform → PCA → Harmony → clustering
 #   4) Supervised BType1 annotation
 #   5) Export marker tables and plots
-#
-# Output:
-#   r_objects/seuobj_b_final.Rds
-#   r_objects/b_markers_by_cluster.csv
-#   r_objects/b_markers_by_BType1.csv
 ###############################################################################
 
 ## ---------------------------------------------------------------------------
 ## 0. Packages, utils, and options
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c("Seurat","harmony","dplyr","ggplot2","patchwork")
-missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[,"Package"])]
-if (length(missing_pkgs) > 0) {
-  stop("Missing packages: ", paste(missing_pkgs, collapse = ", "))
-}
-
-library(Seurat)
-library(harmony)
-library(dplyr)
-library(ggplot2)
-library(patchwork)
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(harmony)
+  library(dplyr)
+  library(ggplot2)
+  library(patchwork)
+})
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
