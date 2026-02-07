@@ -138,7 +138,7 @@ for (comp_name in names(DEG_list)) {
 }
 
 ############################################################
-# 5. Intersections & trend gene sets (as in original script)
+# 5. Intersections & trend gene sets
 ############################################################
 
 # Helper to get symbol vector from stored tables
