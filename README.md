@@ -136,12 +136,8 @@ scRNA/README.md
 ##  **Bulk RNA-seq**
 
 Located under `bulk/`.
-
-### **bulk_1–2**  
-in vitro T cell/DC bulk RNA-seq
-
-### **bulk_3**  
-Whole-heart bulk RNA-seq
+ 
+in vitro T cell/DC and Whole-heart bulk RNA-seq
 
 Detailed documentation is provided in:
 
