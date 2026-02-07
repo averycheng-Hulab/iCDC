@@ -97,12 +97,12 @@ Installed by `install_packages.R` (superset of demo):
 ├── CITATION.cff
 ├── .gitignore
 ├── demo/                          # lightweight demo inputs + generated outputs
-│   ├── demo_bulk.R                # bulk demo script
-│   ├── demo_scRNA.R               # scRNA demo script
-│   ├── bulk_input/                # demo DEG CSV inputs
-│   ├── bulk_output/               # demo bulk outputs (generated after running)
-│   ├── scRNA_input/               # demo Seurat object
-│   └── scRNA_output/              # demo scRNA outputs (generated after running)
+│   ├── demo_bulk.R                
+│   ├── demo_scRNA.R               
+│   ├── bulk_input/                
+│   ├── bulk_output/               # (generated after running)
+│   ├── scRNA_input/               
+│   └── scRNA_output/              # (generated after running)
 ├── bulk/                          # bulk RNA-seq analysis code
 │   ├── bulk_1-2.R
 │   ├── bulk_3.R
