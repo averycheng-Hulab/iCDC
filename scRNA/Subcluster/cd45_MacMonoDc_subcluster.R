@@ -75,7 +75,7 @@ seuobj_macmonodc <- run_clustering(
 )
 
 ## ---------------------------------------------------------------------------
-## 3. Markers by cluster（全局 Mac/Mono/DC）
+## 3. Markers by cluster
 ## ---------------------------------------------------------------------------
 
 markers_cluster <- find_all_markers_wrapper(
