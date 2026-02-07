@@ -24,21 +24,14 @@
 ## 0. Packages and load utilities
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c(
-  "Seurat","dplyr","ggplot2","patchwork","stringr",
-  "scRepertoire"
-)
-missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
-if (length(missing_pkgs) > 0) {
-  stop("Missing packages: ", paste(missing_pkgs, collapse=", "))
-}
-
-library(Seurat)
-library(dplyr)
-library(ggplot2)
-library(patchwork)
-library(stringr)
-library(scRepertoire)
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(dplyr)
+  library(ggplot2)
+  library(patchwork)
+  library(stringr)
+  library(scRepertoire)
+})
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
