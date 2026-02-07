@@ -13,9 +13,6 @@
 #   4) Round 2: SCTransform → PCA → Harmony → clustering
 #   5) Supervised annotation → NeutType1
 #   6) Export markers and plots
-#
-# Output:
-#   r_objects/seuobj_neutrophil_final.Rds
 ###############################################################################
 
 ## ---------------------------------------------------------------------------
