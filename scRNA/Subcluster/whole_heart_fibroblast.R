@@ -12,33 +12,21 @@
 #   * UMAP / TSNE visualization
 #   * Manual annotation (FibType)
 #   * Marker detection (cluster & FibType)
-#
-# Output:
-#   r_objects/seuobj_fibroblast.Rds
-#   fibro_markers_by_cluster.csv
-#   fibro_markers_by_FibType.csv
 ###############################################################################
 
 ## ---------------------------------------------------------------------------
 ## 0. Packages & utils
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c(
-  "Seurat","harmony","dplyr","ggplot2","patchwork",
-  "clustree","SCP"
-)
-missing <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
-if (length(missing) > 0) {
-  stop("Missing packages: ", paste(missing, collapse=", "))
-}
-
-library(Seurat)
-library(harmony)
-library(dplyr)
-library(ggplot2)
-library(patchwork)
-library(clustree)
-library(SCP)
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(harmony)
+  library(dplyr)
+  library(ggplot2)
+  library(patchwork)
+  library(clustree)
+  library(SCP)
+})
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
