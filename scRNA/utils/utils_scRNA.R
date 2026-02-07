@@ -15,21 +15,6 @@
 #   - Marker detection functions
 #   - Annotation mapping helpers
 #   - Plotting helpers
-#
-###############################################################################
-
-suppressPackageStartupMessages({
-  library(Seurat)
-  library(harmony)
-  library(DoubleFinder)
-  library(dplyr)
-  library(ggplot2)
-})
-
-options(stringsAsFactors = FALSE)
-options(future.globals.maxSize = 10 * 1024^3)
-
-
 ###############################################################################
 # 1. Common Plot Theme & Save Function
 ###############################################################################
