@@ -102,7 +102,7 @@ p_global <- DimPlot(
 save_plot(p_global, "neutrophil_umap_global.pdf", width = 7, height = 6)
 
 ## ---------------------------------------------------------------------------
-## 4. Remove unwanted clusters
+## 4. Exclude clusters inconsistent with the target cell identity
 ## ---------------------------------------------------------------------------
 
 to_remove <- c(2,5,10,12,13,14)
