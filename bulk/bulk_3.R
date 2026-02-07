@@ -1,18 +1,18 @@
 ############################################################
 # bulk_3.R
-# Bulk RNA-seq DEG enrichment (whole-heart bulk)
+# Bulk RNA-seq DEG enrichment (heart tissue bulk)
 #
 # - Input: CSV DEG tables generated from the DESeq2 pipeline
 #          Expected columns include:
 #          geneid_symbol, baseMean, log2FoldChange, lfcSE,
 #          stat, pvalue, padj
-#          plus TPM columns: S1...S6, V50, V52, V57, V65
+#          plus TPM columns
 #
 # - Output: DEG up/down tables, GO/KEGG enrichment,
 #           intersection & trend sets (as in the original script)
 #
 # - Dataset:
-#   bulk_3: whole-heart bulk RNA-seq (TPM-based DESeq2)
+#   bulk_3: heart tissue bulk RNA-seq (TPM-based DESeq2)
 #
 ############################################################
 
