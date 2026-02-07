@@ -14,22 +14,15 @@
 ## 0. Packages, utils, options
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c(
-  "Seurat","harmony","dplyr","ggplot2","patchwork","stringr","RColorBrewer"
-)
-
-missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
-if (length(missing_pkgs) > 0) {
-  stop("Missing packages: ", paste(missing_pkgs, collapse=", "))
-}
-
-library(Seurat)
-library(harmony)
-library(dplyr)
-library(ggplot2)
-library(patchwork)
-library(stringr)
-library(RColorBrewer)
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(harmony)
+  library(dplyr)
+  library(ggplot2)
+  library(patchwork)
+  library(stringr)
+  library(RColorBrewer)
+})
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
