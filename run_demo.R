@@ -55,5 +55,5 @@ if (mode %in% c("scrna", "all")) {
 
 cat("====================================\n")
 cat("All requested demos completed.\n")
-cat("Check outputs under 'demo/bulk_output' or 'demo_output/'.\n")
+cat("Check outputs under 'demo/bulk_output' or 'demo/scRNA_output/'.\n")
 cat("====================================\n")
