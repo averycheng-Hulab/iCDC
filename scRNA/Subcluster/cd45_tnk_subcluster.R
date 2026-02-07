@@ -16,37 +16,19 @@
 #   6) Merge refined labels back → TnkType1_refined
 #   7) Collapse NK-Cyc into NK → TnkType1_final
 #   8) Save final object and marker tables
-#
-# Output:
-#   r_objects/seuobj_tnk_final.Rds
-#   r_objects/tnk_markers_by_cluster_preQC.csv
-#   r_objects/tnk_markers_by_cluster_main.csv
-#   r_objects/tnk_markers_by_TnkType1.csv
-#   r_objects/tnk_markers_by_TnkType1_final.csv
 ###############################################################################
 
 ## ---------------------------------------------------------------------------
 ## 0. Packages, utils, options
 ## ---------------------------------------------------------------------------
 
-required_pkgs <- c(
-  "Seurat",
-  "harmony",
-  "dplyr",
-  "ggplot2",
-  "patchwork"
-)
-
-missing_pkgs <- required_pkgs[!(required_pkgs %in% installed.packages()[, "Package"])]
-if (length(missing_pkgs) > 0) {
-  stop("Missing packages: ", paste(missing_pkgs, collapse = ", "))
-}
-
-library(Seurat)
-library(harmony)
-library(dplyr)
-library(ggplot2)
-library(patchwork)
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(harmony)
+  library(dplyr)
+  library(ggplot2)
+  library(patchwork)
+})
 
 source(file.path("scRNA","utils","utils_scRNA.R"))
 
