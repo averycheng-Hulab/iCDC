@@ -9,7 +9,7 @@ This directory contains all scripts used for the bulk RNA-seq workflows in this 
 All analyses follow a unified GO/KEGG enrichment framework and use shared utilities for Mus musculus functional annotation.
 
 Note:
-- bulk_1-2 (in vitro cells): Differential expression results were obtained from the sequencing provider’s DESeq2 standardized reporting pipeline (downloaded DEG tables). This repository reproduces the downstream analyses starting from these DEG tables.
+- bulk_1-2 (in vitro cells): Differential expression results were obtained from the sequencing platform’s DESeq2 standardized reporting pipeline (downloaded DEG tables). This repository reproduces the downstream analyses starting from these DEG tables.
 - bulk_3 (heart tissue): DEGs were generated in-house by running DESeq2 from count matrices, followed by the same downstream framework.
 
 ---
