@@ -69,7 +69,7 @@ To run the demos and/or reuse the analysis pipeline, you need:
 
 Installed by `install_packages_demo.R`:
 
-- CRAN: `Seurat`, `ggplot2`, `dplyr`, `stringr`, `writexl`
+- CRAN: `Seurat`, `ggplot2`, `dplyr`, `stringr`, `writexl`, `patchwork`
 - Bioconductor: `clusterProfiler`, `org.Mm.eg.db`
 - GitHub: `SCP` (`zhanghao-njmu/SCP`)
 
