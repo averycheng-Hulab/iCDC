@@ -8,6 +8,11 @@ This directory contains all scripts used for the bulk RNA-seq workflows in this 
 
 All analyses follow a unified GO/KEGG enrichment framework and use shared utilities for Mus musculus functional annotation.
 
+### Bulk workflow (DEG sources)
+
+- **bulk_1-2 (in vitro cells):** Differential expression results were obtained from the sequencing provider’s DESeq2 standardized reporting pipeline (downloaded DEG tables). This repository reproduces the downstream analyses starting from these DEG tables.
+- **bulk_3 (heart tissue):** DEGs were generated in-house by running DESeq2 from count matrices, followed by the same downstream framework.
+
 ---
 
 # 📁 Directory Structure
@@ -72,7 +77,7 @@ It performs:
   * KEGG enrichment tables
   * Example plots for each comparison
 
-The FPKM filtering (expression cutoff) is **only used in bulk_1-2**, and this is explained in this README.
+The FPKM filtering (expression cutoff) is **only used in bulk_1-2**.
 
 ---
 
@@ -114,7 +119,7 @@ Required columns:
 
 | Column                 | Description      |
 | ---------------------- | ---------------- |
-| `gene_name`            | Gene symbol      |
+| `gene_symbol`          | Gene symbol      |
 | `log2FoldChange`       | Fold-change      |
 | `padj`                 | Adjusted p-value |
 | Two expression columns | For FPKM cutoff  |
@@ -133,7 +138,7 @@ Required columns:
 
 | Column           | Description      |
 | ---------------- | ---------------- |
-| `geneid_symbol`  | Gene symbol      |
+| `gene_symbol`    | Gene symbol      |
 | `log2FoldChange` | DESeq2 FC        |
 | `pvalue`         | Raw p-value      |
 | `padj`           | Adjusted p-value |
