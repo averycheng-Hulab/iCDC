@@ -127,7 +127,7 @@ Required columns:
 You must update group-average expression column indices:
 
 ```r
-expr_col_idx <- c(8, 9)
+expr_col_idx <- c(x, y)
 ```
 
 ---
