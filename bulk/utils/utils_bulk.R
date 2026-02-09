@@ -180,7 +180,6 @@ plot_enrich_bar_neglogp <- function(enrich_df, n = 10, title = "", p_col = c("pv
 
   if (nrow(df) == 0) return(NULL)
 
-  # order factor so the largest bar is on top when coord_flip()
   df$Description <- factor(df$Description, levels = rev(df$Description))
 
   ggplot(df, aes(x = Description, y = neglogp)) +
