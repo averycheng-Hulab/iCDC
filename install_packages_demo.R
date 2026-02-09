@@ -9,7 +9,7 @@ install.packages(c("BiocManager", "remotes"), quiet = TRUE)
 
 cran_pkgs <- c(
   "Seurat","ggplot2",
-  "dplyr","stringr","writexl"
+  "dplyr","stringr","writexl","patchwork"
 )
 
 bioc_pkgs <- c("clusterProfiler","org.Mm.eg.db","scRepertoire")
