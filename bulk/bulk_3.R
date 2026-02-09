@@ -4,15 +4,14 @@
 #
 # - Input: CSV DEG tables generated from the DESeq2 pipeline
 #          Expected columns include:
-#          geneid_symbol, baseMean, log2FoldChange, lfcSE,
+#          gene_symbol, baseMean, log2FoldChange, lfcSE,
 #          stat, pvalue, padj
 #          plus TPM columns
 #
-# - Output: DEG up/down tables, GO/KEGG enrichment,
-#           intersection & trend sets (as in the original script)
+# - Output: DEG up/down tables, GO/KEGG enrichment
 #
 # - Dataset:
-#   bulk_3: heart tissue bulk RNA-seq (TPM-based DESeq2)
+#   bulk_3: heart tissue bulk RNA-seq
 #
 ############################################################
 
@@ -22,13 +21,15 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(clusterProfiler)
   library(org.Mm.eg.db)
+  library(ggplot2)
+  library(patchwork)
 })
 
 # Source shared utilities
 source(file.path("bulk","utils","utils_bulk.R"))
 
 ############################################################
-# 1. User settings
+# 1. Load DEG tables
 ############################################################
 
 input_dir  <- file.path("bulk", "input", "bulk_3")
@@ -41,12 +42,10 @@ dir.create(plot_dir, recursive = TRUE, showWarnings = FALSE)
 # DEG files 
 deg_files <- c(
   "CAR_vs_IR.csv",  
-  "CAR_vs_Vector.csv",
-  "IR_vs_Sham.csv",
-  "Vector_vs_Sham.csv"
+  "CAR_vs_Vector.csv"
 )
 
-contrast_names <- c("CAR_vs_IR", "CAR_vs_Vector", "IR_vs_Sham", "Vector_vs_Sham")
+contrast_names <- c("CAR_vs_IR", "CAR_vs_Vector")
 
 deg_paths <- file.path(input_dir, deg_files)
 names(deg_paths) <- contrast_names
@@ -56,10 +55,6 @@ logfc_cutoff  <- 1      # |log2FC| > 1
 pvalue_cutoff <- 0.01   # p-value threshold
 ntop          <- 3000
 
-############################################################
-# 2. Load DEG tables
-############################################################
-
 DEG_list <- lapply(deg_paths, function(f) {
   message("Reading: ", f)
   read.csv(f, header = TRUE, stringsAsFactors = FALSE)
@@ -68,7 +63,7 @@ DEG_list <- lapply(deg_paths, function(f) {
 names(DEG_list) <- contrast_names
 
 ############################################################
-# 3. Storage lists
+# 2. GO/KEGG analysis and results display
 ############################################################
 
 DEG_up_list        <- list()
@@ -78,16 +73,12 @@ DEG_down_GO_list   <- list()
 DEG_up_KEGG_list   <- list()
 DEG_down_KEGG_list <- list()
 
-############################################################
-# 4. Main loop: filter by log2FC & p-value, enrich
-############################################################
-
 for (comp_name in names(DEG_list)) {
   df <- DEG_list[[comp_name]]
   message("Processing comparison: ", comp_name)
 
   # Sanity checks
-  required_cols <- c("geneid_symbol", "log2FoldChange", "pvalue", "padj")
+  required_cols <- c("gene_symbol", "log2FoldChange", "pvalue", "padj")
   if (!all(required_cols %in% colnames(df))) {
     stop("Missing required columns in ", comp_name, ": ",
          paste(setdiff(required_cols, colnames(df)), collapse = ", "))
@@ -109,8 +100,8 @@ for (comp_name in names(DEG_list)) {
   DEG_down_list[[comp_name]] <- down_df
 
   # Extract gene symbols (remove potential spaces)
-  up_genes <- gsub(" ", "", up_df$geneid_symbol)
-  down_genes <- gsub(" ", "", down_df$geneid_symbol)
+  up_genes <- gsub(" ", "", up_df$gene_symbol)
+  down_genes <- gsub(" ", "", down_df$gene_symbol)
 
   # Enrichment
   up_enrich   <- enrich_GO_KEGG_mouse(up_genes,   ntop = ntop)
@@ -121,77 +112,91 @@ for (comp_name in names(DEG_list)) {
   DEG_down_GO_list[[comp_name]]   <- down_enrich$GO
   DEG_down_KEGG_list[[comp_name]] <- down_enrich$KEGG
 
-  # Example plots (upregulated GO/KEGG)
-  p_go   <- plot_GO_bar(up_enrich$GO,   n = 10,
-                        title = paste("Top GO BP (Up) -", comp_name))
-  p_kegg <- plot_KEGG_dot(up_enrich$KEGG, n = 10,
-                          title = paste("Top KEGG (Up) -", comp_name))
+  # plots (upregulated GO/KEGG)
+  p_go_bar <- plot_enrich_bar_neglogp(
+    up_enrich$GO,
+    n = 10,
+    title = paste0("Top10 GO (Up) - ", comp_name),
+    p_col = "pvalue"   # or "p.adjust" if you prefer adjusted p
+  )
 
-  if (!is.null(p_go)) {
+  p_kegg_bar <- plot_enrich_bar_neglogp(
+    up_enrich$KEGG,
+    n = 10,
+    title = paste0("Top10 KEGG (Up) - ", comp_name),
+    p_col = "pvalue"   # or "p.adjust"
+  )
+
+  if (!is.null(p_go_bar)) {
     ggsave(file.path(plot_dir, paste0("GO_up_", comp_name, ".pdf")),
-           p_go, width = 7, height = 5)
+           p_go_bar, width = 6, height = 4)
   }
-  if (!is.null(p_kegg)) {
+  if (!is.null(p_kegg_bar)) {
     ggsave(file.path(plot_dir, paste0("KEGG_up_", comp_name, ".pdf")),
-           p_kegg, width = 7, height = 5)
+           p_kegg_bar, width = 6, height = 4)
+  }
+
+
+  #####combine
+  if (!is.null(p_go_bar) || !is.null(p_kegg_bar)) {
+    p_combo <- patchwork::wrap_plots(
+      list(p_go_bar, p_kegg_bar),
+      ncol = 1
+    ) +
+      patchwork::plot_annotation(
+        title = paste0("Enrichment (up) - ", comp_name)
+      )
+
+    ggsave(
+      filename = file.path(plot_dir, paste0("Enrich_up_top10_GO_KEGG_", comp_name, ".pdf")),
+      plot = p_combo, width = 6, height = 9
+    )
+  }
+
+  # plots (downregulated GO/KEGG)
+  p_go_bar <- plot_enrich_bar_neglogp(
+    down_enrich$GO,
+    n = 10,
+    title = paste0("Top10 GO (Down) - ", comp_name),
+    p_col = "pvalue"   # or "p.adjust" if you prefer adjusted p
+  )
+
+  p_kegg_bar <- plot_enrich_bar_neglogp(
+    down_enrich$KEGG,
+    n = 10,
+    title = paste0("Top10 KEGG (Down) - ", comp_name),
+    p_col = "pvalue"   # or "p.adjust"
+  )
+
+  if (!is.null(p_go_bar)) {
+    ggsave(file.path(plot_dir, paste0("GO_down_", comp_name, ".pdf")),
+           p_go_bar, width = 6, height = 4)
+  }
+  if (!is.null(p_kegg_bar)) {
+    ggsave(file.path(plot_dir, paste0("KEGG_down_", comp_name, ".pdf")),
+           p_kegg_bar, width = 6, height = 4)
+  }
+
+
+  #####combine
+  if (!is.null(p_go_bar) || !is.null(p_kegg_bar)) {
+    p_combo <- patchwork::wrap_plots(
+      list(p_go_bar, p_kegg_bar),
+      ncol = 1
+    ) +
+      patchwork::plot_annotation(
+        title = paste0("Enrichment (down) - ", comp_name)
+      )
+
+    ggsave(
+      filename = file.path(plot_dir, paste0("Enrich_down_top10_GO_KEGG_", comp_name, ".pdf")),
+      plot = p_combo, width = 6, height = 9
+    )
   }
 }
 
 ############################################################
-# 5. Intersections & trend gene sets
-############################################################
-
-# Helper to get symbol vector from stored tables
-get_symbols <- function(df_list_entry) {
-  if (is.null(df_list_entry) || nrow(df_list_entry) == 0) {
-    return(character(0))
-  }
-  gsub(" ", "", df_list_entry$geneid_symbol)
-}
-
-# Up DEGs intersection: CAR_vs_IR & CAR_vs_Vector
-genes_up_12 <- intersect(
-  get_symbols(DEG_up_list[["CAR_vs_IR"]]),
-  get_symbols(DEG_up_list[["CAR_vs_Vector"]])
-)
-
-# Up DEGs intersection: IR_vs_Sham & Vector_vs_Sham
-genes_up_34 <- intersect(
-  get_symbols(DEG_up_list[["IR_vs_Sham"]]),
-  get_symbols(DEG_up_list[["Vector_vs_Sham"]])
-)
-
-# Down DEGs intersection: CAR_vs_IR & CAR_vs_Vector
-genes_down_12 <- intersect(
-  get_symbols(DEG_down_list[["CAR_vs_IR"]]),
-  get_symbols(DEG_down_list[["CAR_vs_Vector"]])
-)
-
-# Down DEGs intersection: IR_vs_Sham & Vector_vs_Sham
-genes_down_34 <- intersect(
-  get_symbols(DEG_down_list[["IR_vs_Sham"]]),
-  get_symbols(DEG_down_list[["Vector_vs_Sham"]])
-)
-
-# Store intersection gene tables (for clarity)
-DEG_up_list[["Up_CARvsIR_and_CARvsVector"]]         <- data.frame(genes = genes_up_12)
-DEG_up_list[["Up_IRvsSham_and_VectorvsSham"]]       <- data.frame(genes = genes_up_34)
-DEG_down_list[["Down_CARvsIR_and_CARvsVector"]]     <- data.frame(genes = genes_down_12)
-DEG_down_list[["Down_IRvsSham_and_VectorvsSham"]]   <- data.frame(genes = genes_down_34)
-
-# Enrich these intersection sets
-DEG_up_GO_list[["Up_CARvsIR_and_CARvsVector"]]       <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$GO
-DEG_up_KEGG_list[["Up_CARvsIR_and_CARvsVector"]]     <- enrich_GO_KEGG_mouse(genes_up_12,   ntop)$KEGG
-DEG_up_GO_list[["Up_IRvsSham_and_VectorvsSham"]]     <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$GO
-DEG_up_KEGG_list[["Up_IRvsSham_and_VectorvsSham"]]   <- enrich_GO_KEGG_mouse(genes_up_34,   ntop)$KEGG
-
-DEG_down_GO_list[["Down_CARvsIR_and_CARvsVector"]]   <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$GO
-DEG_down_KEGG_list[["Down_CARvsIR_and_CARvsVector"]] <- enrich_GO_KEGG_mouse(genes_down_12, ntop)$KEGG
-DEG_down_GO_list[["Down_IRvsSham_and_VectorvsSham"]] <- enrich_GO_KEGG_mouse(genes_down_34, ntop)$GO
-DEG_down_KEGG_list[["Down_IRvsSham_and_VectorvsSham"]]<- enrich_GO_KEGG_mouse(genes_down_34, ntop)$KEGG
-
-############################################################
-# 6. Save results
+# 3. Save results
 ############################################################
 
 # DEG tables (up/down)
@@ -210,4 +215,4 @@ write_xlsx(DEG_up_KEGG_list,
 write_xlsx(DEG_down_KEGG_list,
            path = file.path(output_dir, "DEG_down_KEGG_results.xlsx"))
 
-message("bulk_3 analysis completed. Results in: ", output_dir)
+message("Analysis completed. Results in: ", output_dir)
