@@ -104,6 +104,7 @@ Installed by `install_packages.R` (superset of demo):
 │   ├── scRNA_input/               
 │   └── scRNA_output/              # (generated after running)
 ├── bulk/                          # bulk RNA-seq analysis code
+│   ├── DESeq2.R
 │   ├── bulk_1-2.R
 │   ├── bulk_3.R
 │   ├── utils/
