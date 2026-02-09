@@ -77,7 +77,6 @@ It performs:
   * KEGG enrichment tables
   * Example plots for each comparison
 
-The FPKM filtering (expression cutoff) is **only used in bulk_1-2**.
 
 ---
 
