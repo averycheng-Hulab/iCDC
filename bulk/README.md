@@ -4,14 +4,13 @@
 
 # Bulk RNA-seq Analysis
 
-This directory contains all scripts used for the bulk RNA-seq workflows in this project,  in vitro cell (T/DC) bulk datasets and whole-heart bulk RNA-seq analysis.
+This directory contains all scripts used for the bulk RNA-seq workflows in this project,  in vitro cell (T/DC) bulk datasets and Heart tissue bulk RNA-seq analysis.
 
 All analyses follow a unified GO/KEGG enrichment framework and use shared utilities for Mus musculus functional annotation.
 
-### Bulk workflow (DEG sources)
-
-- **bulk_1-2 (in vitro cells):** Differential expression results were obtained from the sequencing provider’s DESeq2 standardized reporting pipeline (downloaded DEG tables). This repository reproduces the downstream analyses starting from these DEG tables.
-- **bulk_3 (heart tissue):** DEGs were generated in-house by running DESeq2 from count matrices, followed by the same downstream framework.
+Note:
+- bulk_1-2 (in vitro cells): Differential expression results were obtained from the sequencing provider’s DESeq2 standardized reporting pipeline (downloaded DEG tables). This repository reproduces the downstream analyses starting from these DEG tables.
+- bulk_3 (heart tissue): DEGs were generated in-house by running DESeq2 from count matrices, followed by the same downstream framework.
 
 ---
 
@@ -24,9 +23,10 @@ bulk/
 │
 ├── utils/
 │   └── utils_bulk.R              # Shared enrichment + plotting utilities
-│                     
+│
+├── DESeq2.R                      # DEG analysis of heart tissue bulk samples                     
 ├── bulk_1-2.R                    # in vitro cell (T/DC) bulk enrichment
-└── bulk_3.R                      # Whole-heart bulk enrichment
+└── bulk_3.R                      # Heart tissue bulk enrichment
 
 
 ````
@@ -81,7 +81,7 @@ The FPKM filtering (expression cutoff) is **only used in bulk_1-2**.
 
 ---
 
-## **2.2 Whole-Heart Bulk RNA-seq (bulk_3.R)**
+## **2.2 Heart tissue Bulk RNA-seq (bulk_3.R)**
 
 This module processes **DESeq2 outputs**.
 
