@@ -117,7 +117,7 @@ for (comp_name in names(DEG_list)) {
     up_enrich$GO,
     n = 10,
     title = paste0("Top10 GO (Up) - ", comp_name),
-    p_col = "pvalue"   # or "p.adjust" if you prefer adjusted p
+    p_col = "pvalue"   
   )
 
   p_kegg_bar <- plot_enrich_bar_neglogp(
@@ -158,7 +158,7 @@ for (comp_name in names(DEG_list)) {
     down_enrich$GO,
     n = 10,
     title = paste0("Top10 GO (Down) - ", comp_name),
-    p_col = "pvalue"   # or "p.adjust" if you prefer adjusted p
+    p_col = "pvalue"   
   )
 
   p_kegg_bar <- plot_enrich_bar_neglogp(

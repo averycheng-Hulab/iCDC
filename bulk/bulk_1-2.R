@@ -43,7 +43,6 @@ plot_dir   <- file.path(output_dir, "plots")
 dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(plot_dir, recursive = TRUE, showWarnings = FALSE)
 
-# Replace these with your actual DEG filenames
 deg_files <- c(
   file.path(input_dir, "DEG_Tcell_example.xlsx"),
   file.path(input_dir, "DEG_DC_example.xlsx")
@@ -60,8 +59,7 @@ exp_cutoff  <- 35   # minimal expression cutoff (applied to 2 average expression
 logfc_cutoff <- 1   # absolute log2FC threshold
 ntop        <- 3000 # maximum number of genes for enrichment
 
-# Indices of expression columns used for exp_cutoff; adjust to match your tables
-# e.g. column 8 and 9 in your original script
+# e.g. column x: average value of exp_group1; column y: average value of exp_group2
 expr_col_idx <- c(x, y)
 
 DEG_list <- lapply(deg_files, function(f) {
@@ -132,7 +130,7 @@ for (i in seq_along(DEG_list)) {
     up_enrich$GO,
     n = 10,
     title = paste0("Top10 GO (Up) - ", comp_name),
-    p_col = "pvalue"   # or "p.adjust" if you prefer adjusted p
+    p_col = "pvalue"   
   )
 
   p_kegg_bar <- plot_enrich_bar_neglogp(
@@ -172,7 +170,7 @@ for (i in seq_along(DEG_list)) {
     down_enrich$GO,
     n = 10,
     title = paste0("Top10 GO (Down) - ", comp_name),
-    p_col = "pvalue"   # or "p.adjust" if you prefer adjusted p
+    p_col = "pvalue"   
   )
 
   p_kegg_bar <- plot_enrich_bar_neglogp(
