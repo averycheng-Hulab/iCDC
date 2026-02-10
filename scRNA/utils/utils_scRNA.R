@@ -388,6 +388,32 @@ process_sample_scRNA <- function(
 }
 
 
-###############################################################################
-# End of utils_scRNA.R
-###############################################################################
+############################################################
+# 9. GO/KEGG barplot
+############################################################
+
+plot_enrich_bar_neglogp <- function(enrich_df, n = 10, title = "", p_col = c("pvalue","p.value","p_value","p.adjust")) {
+  if (is.null(enrich_df) || nrow(enrich_df) == 0) return(NULL)
+
+  # choose an available p column
+  p_col <- p_col[p_col %in% colnames(enrich_df)][1]
+  if (is.na(p_col)) stop("No p-value column found in enrichment result.")
+
+  df <- enrich_df %>%
+    dplyr::filter(!is.na(Description), !is.na(.data[[p_col]])) %>%
+    dplyr::mutate(neglogp = -log10(.data[[p_col]])) %>%
+    dplyr::arrange(dplyr::desc(neglogp)) %>%
+    dplyr::slice_head(n = n)
+
+  if (nrow(df) == 0) return(NULL)
+
+  df$Description <- factor(df$Description, levels = rev(df$Description))
+
+  ggplot(df, aes(x = Description, y = neglogp)) +
+    geom_col() +
+    coord_flip() +
+    labs(x = NULL, y = paste0("-log10(", p_col, ")"), title = title) +
+    theme_bw(base_size = 12)
+}
+
+
