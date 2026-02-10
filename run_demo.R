@@ -24,8 +24,11 @@ cat("====================================\n")
 
 if (!dir.exists("demo")) stop("Missing demo/; please run from repository root.")
 
+dir.create("demo_output", showWarnings = FALSE)
 run_demo_script <- function(script_path, label) {
-  cat("\n--- Running ", label, " demo ---\n", sep = "")
+  cat("
+--- Running ", label, " demo ---
+", sep = "")
   if (!file.exists(script_path)) {
     stop("Cannot find demo script: ", script_path)
   }
@@ -35,9 +38,16 @@ run_demo_script <- function(script_path, label) {
   demo_env$DEMO_ROOT <- file.path(getwd(), "demo")
   demo_env$REPO_ROOT <- getwd()
 
+  demo_start <- Sys.time()
   source(script_path, local = demo_env)
+  demo_end <- Sys.time()
 
-  cat("--- ", label, " demo finished ---\n", sep = "")
+  elapsed_sec <- as.numeric(difftime(demo_end, demo_start, units = "secs"))
+  cat("--- ", label, " demo finished ---
+", sep = "")
+  cat("    Elapsed time: ", sprintf("%.2f", elapsed_sec), " sec (", 
+      sprintf("%.2f", elapsed_sec/60), " min)
+", sep = "")
 }
 
 
@@ -56,3 +66,8 @@ cat("====================================\n")
 cat("All requested demos completed.\n")
 cat("Check outputs under 'demo/bulk_output' or 'demo/scRNA_output/'.\n")
 cat("====================================\n")
+
+end_time <- Sys.time()
+total_sec <- as.numeric(difftime(end_time, start_time, units = "secs"))
+cat("Total elapsed time: ", sprintf("%.2f", total_sec), " sec (", sprintf("%.2f", total_sec/60), " min)\n", sep = "")
+cat("Finished at: ", format(end_time, "%Y-%m-%d %H:%M:%S"), "\n", sep = "")
