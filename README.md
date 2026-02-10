@@ -100,8 +100,6 @@ Installed by `install_packages.R` (superset of demo):
 - GitHub: `DoubletFinder` (`chris-mcginnis-ucsf/DoubletFinder`), `SCP` (`zhanghao-njmu/SCP`)
 
 ---
-
----
 ## Repository structure
 ---
 
