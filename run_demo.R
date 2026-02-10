@@ -24,7 +24,6 @@ cat("====================================\n")
 
 if (!dir.exists("demo")) stop("Missing demo/; please run from repository root.")
 
-dir.create("demo_output", showWarnings = FALSE)
 run_demo_script <- function(script_path, label) {
   cat("\n--- Running ", label, " demo ---\n", sep = "")
   if (!file.exists(script_path)) {
