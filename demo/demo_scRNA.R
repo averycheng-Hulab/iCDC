@@ -333,7 +333,7 @@ run_GO_KEGG <- function(gene_vec) {
       )
 
     ggsave(
-      filename = file.path(plot_dir, paste0("Enrich_up_top10_GO_KEGG_Fibroblast.pdf")),
+      filename = file.path(output_dir, paste0("Enrich_up_top10_GO_KEGG_Fibroblast.pdf")),
       plot = p_combo, width = 6, height = 9
     )
   }
