@@ -115,17 +115,6 @@ for (comp_name in names(DEG_list)) {
     p_col = "pvalue"   # or "p.adjust"
   )
 
-  if (!is.null(p_go_bar)) {
-    ggsave(file.path(plot_dir, paste0("GO_up_", comp_name, ".pdf")),
-           p_go_bar, width = 6, height = 4)
-  }
-  if (!is.null(p_kegg_bar)) {
-    ggsave(file.path(plot_dir, paste0("KEGG_up_", comp_name, ".pdf")),
-           p_kegg_bar, width = 6, height = 4)
-  }
-
-
-  #####combine
   if (!is.null(p_go_bar) || !is.null(p_kegg_bar)) {
     p_combo <- patchwork::wrap_plots(
       list(p_go_bar, p_kegg_bar),
@@ -155,18 +144,8 @@ for (comp_name in names(DEG_list)) {
     n = 10,
     title = paste0("Top10 KEGG (Down) - ", comp_name),
     p_col = "pvalue"   # or "p.adjust"
-  )
+  )  
 
-  if (!is.null(p_go_bar)) {
-    ggsave(file.path(plot_dir, paste0("GO_down_", comp_name, ".pdf")),
-           p_go_bar, width = 6, height = 4)
-  }
-  if (!is.null(p_kegg_bar)) {
-    ggsave(file.path(plot_dir, paste0("KEGG_down_", comp_name, ".pdf")),
-           p_kegg_bar, width = 6, height = 4)
-  }
-
-  #####combine
   if (!is.null(p_go_bar) || !is.null(p_kegg_bar)) {
     p_combo <- patchwork::wrap_plots(
       list(p_go_bar, p_kegg_bar),
