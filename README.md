@@ -46,9 +46,16 @@ Rscript run_demo.R --mode=all
 
 * **Bulk demo inputs:** `demo/bulk_input/`
   **Bulk demo outputs:** `demo/bulk_output/`
+  - `DEG_up_tables.xlsx`, `DEG_down_tables.xlsx` (DEG lists)
+  - `DEG_*_GO_results.xlsx`, `DEG_*_KEGG_results.xlsx` (GO/KEGG enrichment tables)
+  - `Enrich_*_top10_GO_KEGG_*.pdf` (top enriched terms plots for each comparison)
 
 * **scRNA demo inputs:** `demo/scRNA_input/` (e.g., `seurat_demo.rds`)
   **scRNA demo outputs:** `demo/scRNA_output/`
+    - `demo_fib2.rds` (downsampled/annotated Seurat object used for plotting)
+  - `DEG_tables.xlsx`, `fibro_markers_by_FibType3.csv` (markers/DEG results)
+  - `GO_KEGG_tables.xlsx` (GO/KEGG enrichment tables)
+  - `fibro_umap_FibType3.pdf`, `fibro_cellstat_by_treatment.pdf`, `fibro_ECMreg_score_*.pdf`, `Enrich_up_top10_GO_KEGG_Fibroblast.pdf` (plots)
 
 > Note: The demo is intended to validate the pipeline and generate representative outputs.
 > It is not designed to reproduce all manuscript figures due to compute/time constraints.
