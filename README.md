@@ -53,6 +53,24 @@ Rscript run_demo.R --mode=all
 > Note: The demo is intended to validate the pipeline and generate representative outputs.
 > It is not designed to reproduce all manuscript figures due to compute/time constraints.
 
+### 4) Typical run time (demo data)
+
+Measured on the above environment using the provided demo datasets (runtime may vary with hardware and whether packages are already installed/cached):
+
+- **Bulk demo:** ~**60.50 sec (1.01 min)**  
+- **scRNA demo:** ~**549.86 sec (9.16 min)**  
+
+### 5) Tested environment
+
+The demo workflow was tested under the following environment:
+
+- **OS:** macOS 15.1.1  
+- **Platform:** `aarch64-apple-darwin20` (Apple Silicon)  
+- **R:** 4.4.1 (2024-06-14)  
+- **Matrix products:** default  
+- **LAPACK:** 3.12.0  
+- **Locale:** `en_US.UTF-8`  
+- **Time zone:** Asia/Shanghai  
 
 ---
 
@@ -61,7 +79,7 @@ Rscript run_demo.R --mode=all
 This repository is a **collection of analysis scripts** (not a compiled software package).
 To run the demos and/or reuse the analysis pipeline, you need:
 
-- **R** (version to be specified by the user; see "Record your environment" below)
+- **R** 
 - Operating system: Linux / macOS / Windows
 - Internet access is required for **first-time package installation** (CRAN/Bioconductor/GitHub)
 
