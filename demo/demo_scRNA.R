@@ -37,26 +37,12 @@ write.csv(markers_post, file.path(output_dir,"fibro_markers_by_FibType3.csv"), r
 
 save_plot(
   CellDimPlot(demo_fib, group.by="FibType3", reduction="UMAP",
-              label=TRUE, label_insitu=TRUE, pt.size=0.1) +
+              label=TRUE, label_insitu=FALSE, pt.size=0.1) +
     plot_theme_common(),
   file.path(output_dir,"fibro_umap_FibType3.pdf"),
   width=5, height=4
 )
 
-save_plot(
-  CellDimPlot(demo_fib, group.by="FibType3", reduction="TSNE",
-              label=TRUE, label_insitu=TRUE, pt.size=0.1) +
-    plot_theme_common(),
-  file.path(output_dir,"fibro_tsne_FibType3.pdf"),
-  width=5, height=4
-)
-
-save_plot(
-  CellDimPlot(demo_fib, group.by="FibType3", split.by="Treatment",
-              reduction="UMAP", label=TRUE, pt.size=0.08),
-  file.path(output_dir,"fibro_umap_FibType3_by_treatment.pdf"),
-  width=10, height=10
-)
 
 save_plot(
   CellStatPlot(demo_fib, stat.by="FibType3", group.by="Treatment",
@@ -149,6 +135,27 @@ save_plot(
   width=6, height=4
 )
 
+
+save_plot(
+  FeatureStatPlot(
+  srt = demo_fib, group.by = "Treatment", bg.by = "Treatment",
+  stat.by = c("ECM_Regulator_Score"), 
+  add_box = TRUE,
+  comparisons = list(
+  c("Sham","IR"),
+  c("IR","Vector"),
+  c("IR","DC"),
+  c("Vector","DC")
+  ),
+  ncol = 1
+  #legend.position = "bottom",
+)+
+   plot_theme_common(),
+  file.path(output_dir,"fibro_ECMreg_score_byTreats.pdf"),
+  width=6, height=4
+)
+
+## MarkerDisplay
 
 ## 4. GO/KEGG analysis
 
@@ -269,27 +276,6 @@ run_GO_KEGG <- function(gene_vec) {
   list(GO = GO_df, KEGG = kegg_df)
 }
 
-plot_bubble <- function(df, title_text, file_out) {
-  if (is.null(df) || nrow(df) == 0) {
-    return(invisible(NULL))
-  }
-
-  df_plot <- df[1:min(10, nrow(df)), ]
-  df_plot$Description <- stringr::str_wrap(df_plot$Description, width = 35)
-
-  df_plot$Description <- factor(df_plot$Description,
-                                levels = rev(df_plot$Description))
-
-  p <- ggplot(df_plot, aes(x = 1, y = Description)) +
-    geom_point(aes(size = Count, color = -log10(pvalue))) +
-    scale_x_continuous(limits = c(1, 1), expand = c(0, 0))+
-    scale_color_gradient(low = "#56B1F7", high = "#CA0020") +
-    scale_size(range = c(3, 8)) +
-    labs(x = "", y = "", title = title_text) +
-    plot_theme_common()
-
-  save_plot(p, file_out, width =6, height = 5)
-}
 
 
   comp <- get_two_comparisons(demo_fib, "Fibroblast")
@@ -322,20 +308,35 @@ plot_bubble <- function(df, title_text, file_out) {
   )
 
   # Bubble plots
-  if (!is.null(enrich_up$GO))
-    plot_bubble(
-      enrich_up$GO[complete.cases(enrich_up$GO),],
-      paste0("Fibroblat", ": GO Up in IR"),
-      file.path(output_dir, "GO_up_bubble.pdf")
-    )
+  p_go_bar <- plot_enrich_bar_neglogp(
+    enrich_up$GO,
+    n = 10,
+    title = paste0("Top10 GO (Up) - Fibroblat, Up in IR"),
+    p_col = "pvalue"   
+  )
 
+  p_kegg_bar <- plot_enrich_bar_neglogp(
+    enrich_up$KEGG,
+    n = 10,
+    title = paste0("Top10 KEGG (Up) - Fibroblat, Up in IR"),
+    p_col = "pvalue"   # or "p.adjust"
+  )
 
-  if (!is.null(enrich_up$KEGG))
-    plot_bubble(
-      enrich_up$KEGG[complete.cases(enrich_up$KEGG),],
-      paste0("Fibroblast", ": KEGG Up in IR"),
-      file.path(output_dir, "KEGG_up_bubble.pdf")
+  #####combine
+  if (!is.null(p_go_bar) || !is.null(p_kegg_bar)) {
+    p_combo <- patchwork::wrap_plots(
+      list(p_go_bar, p_kegg_bar),
+      ncol = 1
+    ) +
+      patchwork::plot_annotation(
+        title = paste0("Enrichment (up) - Fibroblat, Up in IR")
+      )
+
+    ggsave(
+      filename = file.path(plot_dir, paste0("Enrich_up_top10_GO_KEGG_Fibroblast.pdf")),
+      plot = p_combo, width = 6, height = 9
     )
+  }
 
 
   invisible(
