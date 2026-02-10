@@ -150,7 +150,7 @@ T/NK subclustering and supervised annotation.
 
 ### **cd45_neutrophil_subcluster.R**
 
-Two-round integration, removal of unwanted clusters, annotation.
+Two-round integration, annotation.
 
 ### **cd45_b_subcluster.R**
 
