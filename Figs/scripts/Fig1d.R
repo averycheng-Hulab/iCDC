@@ -1,4 +1,4 @@
-## Fig 1c | DC bulk common genes heatmap
+## Fig 1d | T bulk common genes heatmap
 suppressPackageStartupMessages({
   library(pheatmap)
 })
@@ -8,8 +8,7 @@ stopifnot(file.exists(infile))
 
 outdir <- file.path("Figs", "outputs")
 dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
-outfile <- file.path(outdir, "Fig1c_DCbulk_common_heatmap.pdf")
-
+outfile <- file.path(outdir, "Fig1d_Tbulk_common_heatmap.pdf")
 
 merged_df <- read.csv(infile, stringsAsFactors = FALSE, check.names = FALSE)
 
@@ -24,12 +23,12 @@ mode(mat) <- "numeric"
 rownames(mat) <- sample_names
 colnames(mat) <- rownames(merged_df)
 
-
-# annotation_row: for samples (rows of mat)
-treat_vec <- c(rep("WTDC", 3), rep("VecDC", 3), rep("iCDC", 3))
-
+# annotations
 annotation_row <- data.frame(
-  Treat = factor(treat_vec, levels = c("WTDC", "VecDC", "iCDC"))
+  Treat = factor(
+    c(rep("TA", 3), rep("TA_VecDC", 3), rep("TA_iCDC", 3)),
+    levels = c("TA", "TA_VecDC", "TA_iCDC")
+  )
 )
 rownames(annotation_row) <- rownames(mat)
 
@@ -38,25 +37,23 @@ annotation_col <- data.frame(
 )
 rownames(annotation_col) <- colnames(mat)
 
-
 ann_colors <- list(
-  Treat = c(iCDC = "#700303", WTDC = "grey30", VecDC = "grey60"),
+  Treat = c(TA_iCDC = "#700303", TA = "grey60", TA_VecDC = "grey30"),
   GeneClass = c(
     "Chemotaxis" = "#a9d6e8",
     "Immune Activation" = "#2799c8",
-    "Pro-inflammatory" = "#70bca5",
-    "Anti-inflammatory" = "#f6c06e",
-    "pro-Treg Differentiation" = "#d9a4c4"
+    "Pro-inflammatory" = "#70bca5"
   )
 )
+
 hm_colors <- colorRampPalette(c("#4575B4", "#FEFEC0", "#D73027"))(250)
 
-index_break <- c(6, 11, 20, 28)
+index_break <- c(4, 12)
 
-grDevices::cairo_pdf(outfile, width = 12, height = 3.2)  
+grDevices::cairo_pdf(outfile, width = 12, height = 3.2)
 pheatmap(
   mat,
-  scale = "column",                 
+  scale = "column",
   cluster_rows = FALSE,
   cluster_cols = FALSE,
   border_color = "white",
@@ -66,11 +63,11 @@ pheatmap(
   annotation_col = annotation_col,
   annotation_colors = ann_colors,
 
-  gaps_col = index_break,          
+  gaps_col = index_break,
   show_rownames = TRUE,
-  show_colnames = FALSE,           
+  show_colnames = FALSE,
   fontsize_row = 9,
-  main = "Gene Expression, DC bulk, Common"
+  main = "Gene Expression, T bulk, Common"
 )
 dev.off()
 
