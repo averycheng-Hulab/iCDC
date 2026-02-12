@@ -51,6 +51,7 @@ Rscript run_demo.R --mode all
 > Note: The demo is intended to validate the pipeline and generate representative outputs.
 > It is not designed to reproduce all manuscript figures due to compute/time constraints.
 
+
 ---
 
 ## Figure reproduction (Figs)
@@ -82,6 +83,8 @@ Outputs will be saved to:
 
 > Note: Figure scripts are designed to be lightweight and reproducible using the exported input tables.
 > Full-resolution data and complete intermediate objects are not distributed in this GitHub repository.
+> Reproduce (`Figs/`): figure scripts reproduce the manuscript results; differences from the manuscript are cosmetic (e.g., fonts, spacing, legend placement, PDF rendering). Final panel assembly was done in Adobe Illustrator.
+
 
 ---
 
