@@ -53,11 +53,7 @@ ann_colors <- list(
 )
 hm_colors <- colorRampPalette(c("#4575B4", "#FEFEC0", "#D73027"))(250)
 
-
 index_break <- c(6, 11, 20, 28)
-index_break <- index_break[index_break > 0 & index_break < ncol(mat)]
-if (length(index_break) == 0) index_break <- NULL
-
 
 grDevices::cairo_pdf(outfile, width = 12, height = 3.2)  
 pheatmap(
