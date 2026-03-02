@@ -25,19 +25,19 @@ Rscript install_packages_demo.R
 Bulk demo:
 
 ```bash
-Rscript run_demo.R --mode bulk
+Rscript run_demo.R --mode=bulk
 ```
 
 scRNA demo:
 
 ```bash
-Rscript run_demo.R --mode scrna
+Rscript run_demo.R --mode=scrna
 ```
 
 Run both:
 
 ```bash
-Rscript run_demo.R --mode all
+Rscript run_demo.R --mode=all
 ```
 
 ### 3) Inputs and outputs
